@@ -1,269 +1,890 @@
-<!doctype html>
-<!--[if IE 7 ]>    <html lang="en-gb" class="isie ie7 oldie no-js"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en-gb" class="isie ie8 oldie no-js"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en-gb" class="isie ie9 no-js"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en-gb" class="no-js">
-<!--<![endif]-->
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!--[if lt IE 9]> 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <![endif]-->
-    <title>CDN - Código, Design & Negócios | Soluções Web, Criação de sites em Florianópolis</title>
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="description" content="Criação de sites em florianópolis" />
-        <meta name="keywords" content="criação de sites florianópolis, criação de sites florianopolis, desenvolvimento de web sites florianopólis, criação de sites, desenvolvimento de sites, desenvolvimento de websites florianopolis, criação sites floripa, desenvolvimento de sites florianopolis, redes sociais florianopolis, facebook, twitter, empresa sites florianopolis, identidade visual florianopolis, criacao de logo florianopolis, otimização sites florianopolis, criacao sites floripa, desenvolvimento sites floripa, gestao redes sociai s florianópolis, empresa criação sites florianópolis, empresa websites florianopolis, empresa websites floripa, sites florianopolis, sites florianópolis, sites floripa, webdesigner florianopolis, web designer florianópolis, webdesign floripa, criação de sites são josé, criação de sites palhoça, criação de sites biguaçu, criação de sites joinville, criação de sites camburiú, desenvolvimento websites são josé, sites florianópolis, sites floripa, criar sites florianópolis, criar sites em florianopolis, criar sites em são josé, criar sites, criar websites florianópolis" />
-        <meta name="author" content="Tiago Müller Cadorin">
-        <meta name="robots" content="índice, siga">
-        <meta name="revisit-after" content="5 dia">
-    <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lte IE 8]>
-		<script type="text/javascript" src="http://explorercanvas.googlecode.com/svn/trunk/excanvas.js"></script>
-	<![endif]-->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/isotope.css" media="screen" />
-    <link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="css/da-slider.css" />
-    <!-- Owl Carousel Assets -->
-    <link href="js/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" />
-    <!-- Font Awesome -->
-    <link href="font/css/font-awesome.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechGuia — Tecnologia explicada para você</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f0f0d;
+    --ink-muted: #5a5851;
+    --ink-light: #9a9890;
+    --surface: #fafaf7;
+    --surface-2: #f2f1ec;
+    --surface-3: #e8e6df;
+    --accent: #d45a1e;
+    --accent-2: #1a3a5c;
+    --accent-3: #1d6e4f;
+    --border: rgba(15,15,13,0.1);
+    --border-strong: rgba(15,15,13,0.2);
+    --radius: 4px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--accent); }
+
+  .nav-tagline {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-weight: 300;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(212,90,30,0.1);
+    padding: 4px 12px;
+    border-radius: 2px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .hero p {
+    font-size: 1.1rem;
+    color: var(--ink-muted);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* CATEGORY SELECTOR */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+  }
+
+  .categories-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .category-card {
+    background: var(--surface);
+    padding: 1.75rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .category-card:hover { background: var(--surface-2); }
+  .category-card.active { background: var(--ink); color: white; }
+  .category-card.active .cat-name { color: white; }
+  .category-card.active .cat-desc { color: rgba(255,255,255,0.6); }
+  .category-card.active .cat-icon { background: rgba(255,255,255,0.15); color: white; }
+
+  .cat-icon {
+    width: 40px; height: 40px;
+    background: var(--surface-2);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    margin-bottom: 0.5rem;
+  }
+
+  .cat-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .cat-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-weight: 300;
+  }
+
+  /* USE CASE SELECTOR */
+  .usecase-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+    display: none;
+  }
+  .usecase-section.visible { display: block; }
+
+  .usecase-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .usecase-pill {
+    padding: 8px 18px;
+    border: 1px solid var(--border-strong);
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  .usecase-pill:hover { background: var(--surface-2); border-color: var(--ink); }
+  .usecase-pill.active { background: var(--ink); color: white; border-color: var(--ink); }
+
+  /* PRODUCTS SECTION */
+  .products-section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+    display: none;
+  }
+  .products-section.visible { display: block; }
+
+  .products-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .products-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .context-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .context-badge span {
+    background: var(--surface-3);
+    padding: 3px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 12px;
+  }
+
+  /* PRODUCT CARD */
+  .product-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background: var(--surface);
+    transition: box-shadow 0.2s;
+  }
+
+  .product-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+
+  .product-inner {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+  }
+
+  @media (max-width: 640px) {
+    .product-inner { grid-template-columns: 1fr; }
+  }
+
+  .product-visual {
+    background: var(--surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    flex-direction: column;
+    gap: 1rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .product-img {
+    width: 180px;
+    height: 130px;
+    object-fit: contain;
+  }
+
+  .product-badge {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .badge-best { background: rgba(29,110,79,0.12); color: #0f5c3a; }
+  .badge-cost { background: rgba(26,58,92,0.12); color: #0e3660; }
+  .badge-premium { background: rgba(212,90,30,0.12); color: #993a10; }
+
+  .product-content { padding: 1.75rem; }
+
+  .product-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .product-model {
+    font-size: 12px;
+    color: var(--ink-light);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+
+  .tab-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: -1px;
+  }
+
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* BENEFITS */
+  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .benefit-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .benefit-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .benefit-text { font-size: 14px; line-height: 1.6; color: var(--ink-muted); }
+  .benefit-text strong { color: var(--ink); font-weight: 500; }
+
+  /* SPECS TABLE */
+  .specs-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .specs-table tr { border-bottom: 1px solid var(--border); }
+  .specs-table tr:last-child { border-bottom: none; }
+  .specs-table td { padding: 8px 4px; vertical-align: top; }
+  .specs-table td:first-child { color: var(--ink-muted); width: 45%; font-weight: 400; }
+  .specs-table td:last-child { font-weight: 500; color: var(--ink); }
+  .spec-explain { display: block; font-size: 11px; font-weight: 300; color: var(--ink-light); margin-top: 2px; }
+
+  /* BUY BUTTON */
+  .product-footer {
+    padding: 1rem 1.75rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--surface-2);
+  }
+
+  .price-tag {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .price-note { font-size: 12px; color: var(--ink-muted); font-weight: 300; margin-top: 2px; }
+
+  .buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: var(--ink);
+    color: white;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background 0.15s, transform 0.1s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .buy-btn:hover { background: var(--accent); transform: translateY(-1px); }
+  .buy-btn svg { width: 14px; height: 14px; }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-light);
+    font-weight: 300;
+  }
+
+  footer strong { color: var(--ink-muted); font-weight: 500; }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--ink-muted);
+    display: none;
+  }
+  .empty-state.visible { display: block; }
+  .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; }
+  .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-in { animation: fadeUp 0.3s ease forwards; }
+
+  /* breadcrumb */
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+    display: none;
+  }
+  .breadcrumb.visible { display: block; }
+  .breadcrumb a { color: var(--ink-muted); text-decoration: underline; cursor: pointer; }
+  .breadcrumb span { color: var(--ink-light); margin: 0 6px; }
+</style>
 </head>
-
 <body>
-    <header class="header">
-        <div class="container">
-            <nav class="navbar navbar-inverse" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" id="nav-toggle" class="navbar-toggle" data-toggle="collapse" data-target="#main-nav">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="#" class="navbar-brand scroll-top logo"><b></b></a>
-                </div>
-                <!--/.navbar-header-->
-                <div id="main-nav" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav" id="mainNav">
-                        <li class="active"><a href="#home" class="scroll-link">Home</a></li>
-                        <li><a href="#aboutUs" class="scroll-link">Soluções</a></li>
-                        
-                        <li><a href="#portfolio" class="scroll-link">Portfolio</a></li>
-                        <li><a href="#contactUs" class="scroll-link">Contato</a></li>
-                    </ul>
-                </div>
-                <!--/.navbar-collapse-->
-            </nav>
-            <!--/.navbar-->
+
+<nav>
+  <div class="logo">Tech<span>Guia</span></div>
+  <div class="nav-tagline">Tecnologia sem complicação</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-label">Para quem não é técnico</div>
+  <h1>Encontre o equipamento certo<br>para o que você precisa.</h1>
+  <p>Chega de especificações confusas. Aqui você entende o que cada produto realmente faz pela sua vida — e por que vale a pena.</p>
+</section>
+
+<!-- STEP 1: CATEGORIAS -->
+<section class="categories-section">
+  <p class="section-title">Passo 1 — Escolha a categoria</p>
+  <div class="category-grid">
+    <div class="category-card" onclick="selectCategory('monitor')">
+      <div class="cat-icon">🖥️</div>
+      <div class="cat-name">Monitor</div>
+      <div class="cat-desc">A tela que fica na sua mesa</div>
+    </div>
+    <div class="category-card" onclick="selectCategory('notebook')">
+      <div class="cat-icon">💻</div>
+      <div class="cat-name">Notebook</div>
+      <div class="cat-desc">Computador para levar com você</div>
+    </div>
+    <div class="category-card" onclick="selectCategory('teclado')">
+      <div class="cat-icon">⌨️</div>
+      <div class="cat-name">Teclado</div>
+      <div class="cat-desc">Para digitar com conforto</div>
+    </div>
+    <div class="category-card" onclick="selectCategory('mouse')">
+      <div class="cat-icon">🖱️</div>
+      <div class="cat-name">Mouse</div>
+      <div class="cat-desc">Controle e precisão na mão</div>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2: USO -->
+<section class="usecase-section" id="usecase-section">
+  <p class="section-title">Passo 2 — Para que você vai usar?</p>
+  <div class="usecase-pills" id="usecase-pills"></div>
+</section>
+
+<!-- STEP 3: PRODUTOS -->
+<section class="products-section" id="products-section">
+  <div class="breadcrumb" id="breadcrumb"></div>
+  <div class="products-header">
+    <div class="products-title" id="products-title">Monitores</div>
+    <div class="context-badge" id="context-badge"></div>
+  </div>
+  <div id="products-list"></div>
+</section>
+
+<section class="categories-section empty-state" id="empty-state">
+  <div class="empty-state-icon">🔧</div>
+  <h3>Em breve por aqui</h3>
+  <p>Essa categoria ainda está sendo preparada com muito cuidado. Volte em breve!</p>
+</section>
+
+<footer>
+  <strong>TechGuia</strong> — Recomendações honestas, explicadas para pessoas reais.<br>
+  Os links de compra levam para os produtos nas lojas parceiras. Preços podem variar.
+</footer>
+
+<script>
+const data = {
+  monitor: {
+    label: "Monitor",
+    usecases: [
+      { id: "home", label: "🏠 Uso doméstico", desc: "Redes sociais, filmes, videochamadas" },
+      { id: "office", label: "💼 Corporativo / Trabalho", desc: "Excel, e-mail, videoconferências" },
+      { id: "games", label: "🎮 Games", desc: "Jogos casuais ou competitivos" },
+      { id: "design", label: "🎨 Design / Foto / Vídeo", desc: "Edição de imagens e vídeos" },
+    ],
+    products: {
+      home: [
+        {
+          name: "LG 24MP400",
+          model: "LG 24MP400-B · 24 polegadas",
+          badge: "best",
+          badgeLabel: "Melhor custo-benefício",
+          img: "https://images.tcdn.com.br/img/img_prod/756520/monitor_lg_24mp400_b_24_full_hd_ips_75hz_1ms_hdmi_vga_freesync_preto_1186_1_b1dc8b6a3cdf73e0b31f94ed79e9e12c.jpg",
+          price: "R$ 699",
+          priceNote: "na Amazon · parcelável em até 10x",
+          benefits: [
+            { title: "Imagem nítida o dia todo", text: "A tela IPS mantém as cores bonitas mesmo quando você olha de lado — perfeito para assistir filmes com família ou fazer videochamadas sem perder qualidade." },
+            { title: "Olhos que agradecem", text: "A tecnologia anti-cintilação reduz o cansaço visual. Se você passa horas na tela, seus olhos vão sentir a diferença no final do dia." },
+            { title: "Tamanho ideal para casa", text: "24 polegadas é o ponto doce para uso doméstico: não ocupa muito espaço na mesa, mas a imagem não fica pequena demais para filmes ou navegação." },
+            { title: "Conexão fácil", text: "Tem entrada HDMI — o mesmo cabo do seu televisor. Conecta com qualquer notebook ou computador sem precisar de adaptadores." },
+          ],
+          specs: [
+            { label: "Tamanho da tela", value: "24 polegadas", explain: "Equivale a uma boa tela de notebook, mas mais larga e ergonômica" },
+            { label: "Resolução Full HD", value: "1920 × 1080", explain: "Imagem nítida para tudo que você faz no dia a dia" },
+            { label: "Taxa de atualização", value: "75 Hz", explain: "A tela se redesenha 75x por segundo — rolagem e vídeos ficam bem suaves" },
+            { label: "Tempo de resposta", value: "5ms", explain: "Velocidade com que a tela reage — para uso doméstico, mais do que suficiente" },
+            { label: "Painel", value: "IPS", explain: "Cores fiéis e boa visibilidade de qualquer ângulo" },
+            { label: "Entradas", value: "HDMI + VGA", explain: "Compatível com praticamente qualquer dispositivo" },
+          ],
+          link: "https://www.amazon.com.br/dp/B08T6X7F7T"
+        },
+        {
+          name: "Samsung 27\" S3",
+          model: "Samsung LS27C310EALXZD · 27 polegadas",
+          badge: "premium",
+          badgeLabel: "Experiência ampliada",
+          img: "https://images.samsung.com/is/image/samsung/p6pim/br/ls27c310ealxzd/gallery/br-monitor-s3-ls27c310ealxzd-534841003?$650_519_PNG$",
+          price: "R$ 1.099",
+          priceNote: "na Samsung Store · frete grátis",
+          benefits: [
+            { title: "Tela grande que faz diferença", text: "27 polegadas transforma a experiência: séries, filmes e vídeos no YouTube ficam com outra dimensão. É como ter um cinema pessoal na mesa." },
+            { title: "Imagem mais viva e colorida", text: "O painel IPS deste modelo reproduz cores com mais vivacidade — você vai notar que fotos e vídeos parecem mais reais e bonitos." },
+            { title: "Funciona como segunda tela do notebook", text: "Conecte seu notebook e use os dois ao mesmo tempo — um para trabalho, outro para entretenimento. Produtividade dobrada sem esforço." },
+            { title: "Design discreto que combina com qualquer ambiente", text: "Bordas finas e visual clean que não agride a decoração da sua casa ou home office." },
+          ],
+          specs: [
+            { label: "Tamanho da tela", value: "27 polegadas", explain: "Confortável para longas sessões de uso, sem forçar a visão" },
+            { label: "Resolução Full HD", value: "1920 × 1080", explain: "Nítido para filmes, séries e navegação do dia a dia" },
+            { label: "Taxa de atualização", value: "75 Hz", explain: "Rolagem e movimentos na tela bem suaves" },
+            { label: "Painel", value: "IPS", explain: "Cores consistentes de qualquer posição que você estiver" },
+            { label: "Ajuste de inclinação", value: "Sim (tilt)", explain: "Você inclina a tela para a posição mais confortável para o seu pescoço" },
+            { label: "Entradas", value: "HDMI + D-Sub", explain: "Conecta com notebook, PC e videogame" },
+          ],
+          link: "https://www.samsung.com/br/monitors/flat/monitor-27-s3-ls27c310ealxzd/"
+        }
+      ],
+      office: [
+        {
+          name: "Dell 24\" P2422H",
+          model: "Dell P2422H · 24 polegadas · Profissional",
+          badge: "best",
+          badgeLabel: "Preferido por empresas",
+          img: "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2422h/pdp/monitor-p2422h-pdp-hero.psd?fmt=jpg&wid=500&hei=350",
+          price: "R$ 1.349",
+          priceNote: "na Dell Store · com nota fiscal",
+          benefits: [
+            { title: "Perfeito para planilhas e documentos longos", text: "A tela é mais alta do que os monitores comuns, mostrando mais linhas de uma planilha ou mais parágrafos de um documento ao mesmo tempo — menos rolar, mais produtividade." },
+            { title: "Posição que protege seu corpo", text: "Você consegue ajustar altura, inclinação e até girar a tela. Isso evita dor no pescoço e nas costas em longas jornadas de trabalho." },
+            { title: "Imagem que não cansa os olhos em reuniões longas", text: "A tela não pisca (sem flicker) e tem luz azul reduzida, dois fatores que diminuem muito o cansaço em dias de muitas videoconferências." },
+            { title: "Certificado para ambientes corporativos", text: "Dell é uma das marcas mais usadas em empresas no mundo. Isso significa confiabilidade, garantia extendida e suporte técnico real quando você precisar." },
+          ],
+          specs: [
+            { label: "Tamanho da tela", value: "24 polegadas", explain: "Tamanho padrão corporativo — cabe bem em qualquer mesa de escritório" },
+            { label: "Resolução", value: "1920 × 1080 (Full HD)", explain: "Textos e planilhas sempre nítidos" },
+            { label: "Ajuste ergonômico", value: "Altura + Giro + Inclinação", explain: "Adapta a tela ao seu corpo, não o contrário" },
+            { label: "Taxa de atualização", value: "60 Hz", explain: "Suficiente para trabalho — a tela não precisa ser mais rápida que o seu olho lendo documentos" },
+            { label: "Entrada USB", value: "Hub USB integrado", explain: "Conecte mouse, pen drive e outros acessórios diretamente no monitor" },
+            { label: "Garantia", value: "3 anos Dell", explain: "Se o monitor apresentar defeito, a Dell troca sem burocracia" },
+          ],
+          link: "https://www.dell.com/pt-br/shop/monitors-monitor-accessories/dell-monitor-p2422h/spd/dell-p2422h-monitor"
+        },
+        {
+          name: "LG 27\" QHD UltraFine",
+          model: "LG 27UK850 · 27 polegadas · 4K",
+          badge: "premium",
+          badgeLabel: "Para profissionais exigentes",
+          img: "https://www.lg.com/br/images/monitores/md05886862/gallery/DZ-01.jpg",
+          price: "R$ 2.299",
+          priceNote: "na LG Store ou Amazon",
+          benefits: [
+            { title: "Texto tão nítido que parece impresso", text: "A resolução 4K faz letras e números ficarem afiados como papel impresso. Quem trabalha o dia inteiro com texto vai notar imediatamente — menos esforço para os olhos, mais conforto." },
+            { title: "Espaço de trabalho muito maior na tela", text: "Com mais resolução você consegue ver duas janelas lado a lado com conforto real. É como ter dois monitores de computador comuns em um só." },
+            { title: "Carrega o notebook pelo cabo da tela", text: "Conecta um cabo só (USB-C) e a tela já carrega seu MacBook ou notebook compatível. Menos fios na mesa." },
+            { title: "Cores precisas para apresentações e relatórios", text: "O que você vê na tela é o que aparece na impressão ou no projetor da sala de reunião. Nada de surpresas com cores erradas." },
+          ],
+          specs: [
+            { label: "Tamanho da tela", value: "27 polegadas", explain: "Espaço real para trabalhar com conforto" },
+            { label: "Resolução", value: "3840 × 2160 (4K)", explain: "4x mais detalhe que Full HD — texto e imagens perfeitos" },
+            { label: "Conexão USB-C", value: "Sim (85W de carga)", explain: "Um cabo conecta e carrega o notebook ao mesmo tempo" },
+            { label: "Painel", value: "IPS 4K", explain: "Cores fiéis de qualquer ângulo" },
+            { label: "Hub USB", value: "2x USB 3.0", explain: "Conecte acessórios diretamente no monitor" },
+            { label: "Taxa de atualização", value: "60 Hz", explain: "Ideal para trabalho — não é feito para jogos" },
+          ],
+          link: "https://www.amazon.com.br/dp/B07DJ2C57L"
+        }
+      ],
+      games: [
+        {
+          name: "AOC 27\" C27G2",
+          model: "AOC C27G2 · 27 polegadas · Curvo",
+          badge: "best",
+          badgeLabel: "Melhor entrada para games",
+          img: "https://aoc.com/content/uploads/2020/01/C27G2_Front-1-600x436.jpg",
+          price: "R$ 1.499",
+          priceNote: "na Amazon · disponível para entrega imediata",
+          benefits: [
+            { title: "Movimentos ultrasuaves — sem borrão", text: "A tela se atualiza 165 vezes por segundo, muito mais rápido que os monitores comuns. Isso significa que quando você move o personagem, a imagem acompanha sem ficar borrada ou com fantasmas." },
+            { title: "Tela curva que te coloca dentro do jogo", text: "A leve curvatura envolve sua visão periférica e dá a sensação de estar dentro do ambiente do jogo. A imersão aumenta de verdade." },
+            { title: "Zero travamento em cenas de ação", text: "FreeSync sincroniza a tela com a sua placa de vídeo. O resultado: sem travamentos, sem imagem 'rasgada', mesmo nos momentos mais agitados do jogo." },
+            { title: "Resposta tão rápida que você reage antes do inimigo", text: "Com 1ms de tempo de resposta, a tela reage praticamente instantâneo ao que acontece no jogo — diferença real em jogos competitivos." },
+          ],
+          specs: [
+            { label: "Taxa de atualização", value: "165 Hz", explain: "Quanto maior, mais suave o movimento na tela — jogos exigem 144Hz ou mais para uma boa experiência" },
+            { label: "Tempo de resposta", value: "1ms (MPRT)", explain: "Velocidade que a tela reage — 1ms é o nível mais rápido disponível, essencial para jogos rápidos" },
+            { label: "Resolução", value: "1920 × 1080 (Full HD)", explain: "Funciona bem com placas de vídeo mais acessíveis" },
+            { label: "Sincronização adaptativa", value: "AMD FreeSync Premium", explain: "Elimina o 'rasgado' na imagem sem precisar de hardware extra" },
+            { label: "Curvatura", value: "1500R", explain: "Quanto menor o número, mais curva — este aqui tem curvatura perceptível e imersiva" },
+            { label: "Painel", value: "VA", explain: "Pretos mais profundos — cenas noturnas e de suspense ficam mais impactantes" },
+          ],
+          link: "https://www.amazon.com.br/dp/B08DTML5RG"
+        },
+        {
+          name: "Samsung Odyssey G7",
+          model: "Samsung LC32G75T · 32 polegadas · WQHD",
+          badge: "premium",
+          badgeLabel: "Para jogadores sérios",
+          img: "https://images.samsung.com/is/image/samsung/p6pim/br/lc32g75tqslxzd/gallery/br-odyssey-g7-c32g75t-lc32g75tqslxzd-thumb-535042127?$200_200_PNG$",
+          price: "R$ 3.299",
+          priceNote: "na Samsung Store",
+          benefits: [
+            { title: "32 polegadas de imersão total", text: "Uma tela desse tamanho com curvatura agressiva preenche completamente seu campo de visão. É a diferença entre assistir ao jogo e estar dentro dele." },
+            { title: "Imagem mais detalhada que Full HD", text: "A resolução WQHD mostra mais detalhes do que Full HD — você enxerga inimigos à distância, texturas do ambiente e elementos do mapa com muito mais clareza." },
+            { title: "240Hz — a tela mais rápida da categoria", text: "240 atualizações por segundo significa a imagem mais fluida possível. Para jogos competitivos como CS2, Valorant ou Fortnite, isso pode ser o diferencial entre ganhar e perder." },
+            { title: "Preto de verdade — contraste cinematográfico", text: "O painel VA deste monitor entrega pretos profundos e contraste alto. Cenas noturnas, jogos de terror e qualquer ambiente escuro ficam impactantes como no cinema." },
+          ],
+          specs: [
+            { label: "Taxa de atualização", value: "240 Hz", explain: "O mais alto disponível no mercado — diferença visível em jogos rápidos" },
+            { label: "Resolução", value: "2560 × 1440 (WQHD)", explain: "50% mais detalhado que Full HD, sem precisar de uma placa de vídeo top de linha" },
+            { label: "Curvatura", value: "1000R", explain: "Curvatura bem pronunciada — envolve o campo visual periférico completamente" },
+            { label: "Tempo de resposta", value: "1ms (GtG)", explain: "Máxima velocidade possível" },
+            { label: "Sincronização", value: "FreeSync + G-Sync compatível", explain: "Funciona com placas AMD e NVIDIA sem travamentos" },
+            { label: "HDR", value: "HDR 600", explain: "Cenas com luz e sombra ao mesmo tempo ficam mais ricas e realistas" },
+          ],
+          link: "https://www.samsung.com/br/monitors/gaming/odyssey-g7-c32g7-lc32g75tqslxzd/"
+        }
+      ],
+      design: [
+        {
+          name: "BenQ SW270C",
+          model: "BenQ SW270C · 27 polegadas · Profissional",
+          badge: "best",
+          badgeLabel: "Escolha dos fotógrafos",
+          img: "https://m.media-amazon.com/images/I/71RBvFbtGfL._AC_SL1500_.jpg",
+          price: "R$ 3.899",
+          priceNote: "na Amazon BR",
+          benefits: [
+            { title: "O que você edita é exatamente o que sai impresso", text: "Este monitor é calibrado de fábrica para mostrar as cores como elas realmente são. Nada de editar uma foto e ela sair diferente na impressão ou no celular do cliente." },
+            { title: "Proteção contra luz que atrapalha a cor", text: "Vem com um escudo lateral que bloqueia reflexos e claridade do ambiente — fundamental para trabalhos sérios de edição onde cada tom de cor importa." },
+            { title: "Suporte para cartão de memória da câmera", text: "Conecta cartão SD diretamente no monitor. Sem precisar de adaptadores ou hubs externos para importar fotos." },
+            { title: "Modo preto e branco real", text: "Para fotografia em P&B, você pode ver a edição em preto e branco real direto na tela — sem misturar com as cores do ambiente." },
+          ],
+          specs: [
+            { label: "Cobertura de cores (sRGB)", value: "99%", explain: "Mostra praticamente todas as cores que câmeras, celulares e impressoras trabalham" },
+            { label: "Cobertura Adobe RGB", value: "99%", explain: "Padrão profissional — cobre cores que a tela comum simplesmente não consegue mostrar" },
+            { label: "Calibração de fábrica", value: "Sim (relatório incluso)", explain: "Cada monitor sai da fábrica verificado — você pode confiar nas cores sem calibrar manualmente" },
+            { label: "Resolução", value: "2560 × 1440 (WQHD)", explain: "Detalhes finos visíveis — importante ao retocar cabelos, skin texture e elementos delicados" },
+            { label: "Painel", value: "IPS Wide Gamut", explain: "Reproduz cores que monitores comuns não conseguem exibir" },
+            { label: "USB-C", value: "Sim (60W)", explain: "Conecta MacBook e notebooks modernos com um único cabo" },
+          ],
+          link: "https://www.amazon.com.br/dp/B08F5KXZS8"
+        },
+        {
+          name: "ASUS ProArt PA278QV",
+          model: "ASUS ProArt PA278QV · 27 polegadas",
+          badge: "cost",
+          badgeLabel: "Profissional mais acessível",
+          img: "https://dlcdnimgs.asus.com/websites/global/products/YgxzRxgpidZeiBQL/img/kv.jpg",
+          price: "R$ 2.499",
+          priceNote: "na Kabum ou Amazon",
+          benefits: [
+            { title: "Cores corretas sem precisar calibrar", text: "Vem calibrado e com certificação de precisão de cores. Você abre o produto e já pode confiar na tela para trabalho profissional." },
+            { title: "Grande espaço de trabalho para multitarefa", text: "A resolução WQHD permite ter Adobe Premiere, Photoshop e Lightroom abertos ao mesmo tempo sem sacrificar o espaço de trabalho de nenhum." },
+            { title: "Ergonomia completa para longas sessões", text: "Ajuste de altura, rotação e inclinação. Quando você usa a tela por horas, poder posicioná-la do jeito certo faz diferença no cansaço físico." },
+            { title: "Compatível com todos os softwares profissionais", text: "Reconhecido e recomendado pela Adobe. Cores que você vê no Photoshop são as mesmas que aparecem no trabalho final entregue ao cliente." },
+          ],
+          specs: [
+            { label: "Cobertura de cores (sRGB)", value: "100%", explain: "Reproduz todas as cores do padrão web e redes sociais com perfeição" },
+            { label: "Resolução", value: "2560 × 1440 (WQHD)", explain: "Ideal para edição de fotos e vídeos sem precisar de placa de vídeo ultra potente" },
+            { label: "Painel", value: "IPS", explain: "Cores precisas de qualquer ângulo — essencial para mostrar trabalhos a clientes" },
+            { label: "Taxa de atualização", value: "75 Hz", explain: "Suficiente para design — editores de imagem não precisam de alta frequência" },
+            { label: "Entradas", value: "HDMI 2.0 · DisplayPort · USB-A", explain: "Conecta com qualquer computador ou notebook profissional" },
+            { label: "Ajuste ergonômico", value: "Altura + Pivô + Inclinação", explain: "Posicione exatamente como seu corpo precisa" },
+          ],
+          link: "https://www.kabum.com.br/produto/115678/monitor-asus-proart-pa278qv"
+        }
+      ]
+    }
+  },
+  notebook: { label: "Notebook", usecases: [], products: {} },
+  teclado: { label: "Teclado", usecases: [], products: {} },
+  mouse: { label: "Mouse", usecases: [], products: {} },
+};
+
+let selectedCategory = null;
+let selectedUsecase = null;
+
+function selectCategory(cat) {
+  selectedCategory = cat;
+  selectedUsecase = null;
+
+  document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  const catData = data[cat];
+  document.getElementById('products-section').classList.remove('visible');
+
+  if (!catData.usecases || catData.usecases.length === 0) {
+    document.getElementById('usecase-section').classList.remove('visible');
+    document.getElementById('empty-state').classList.add('visible');
+    return;
+  }
+
+  document.getElementById('empty-state').classList.remove('visible');
+
+  const pillsContainer = document.getElementById('usecase-pills');
+  pillsContainer.innerHTML = '';
+  catData.usecases.forEach(uc => {
+    const pill = document.createElement('button');
+    pill.className = 'usecase-pill';
+    pill.textContent = uc.label;
+    pill.onclick = () => selectUsecase(uc.id, uc.label);
+    pillsContainer.appendChild(pill);
+  });
+
+  const section = document.getElementById('usecase-section');
+  section.classList.add('visible');
+  section.classList.add('animate-in');
+  setTimeout(() => section.classList.remove('animate-in'), 300);
+  section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function selectUsecase(id, label) {
+  selectedUsecase = id;
+
+  document.querySelectorAll('.usecase-pill').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  const products = data[selectedCategory].products[id] || [];
+  const catLabel = data[selectedCategory].label;
+
+  document.getElementById('products-title').textContent = `${catLabel}es para ${label.replace(/^[^\w]+ /, '')}`;
+
+  const badge = document.getElementById('context-badge');
+  badge.innerHTML = `${catLabel} <span>${label.replace(/^[^\w]+ /, '')}</span>`;
+
+  const breadcrumb = document.getElementById('breadcrumb');
+  breadcrumb.innerHTML = `<a onclick="resetAll()">Início</a> <span>›</span> ${catLabel} <span>›</span> ${label.replace(/^[^\w]+ /, '')}`;
+  breadcrumb.classList.add('visible');
+
+  renderProducts(products);
+
+  const section = document.getElementById('products-section');
+  section.classList.add('visible');
+  section.classList.add('animate-in');
+  setTimeout(() => section.classList.remove('animate-in'), 400);
+  setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+}
+
+function renderProducts(products) {
+  const container = document.getElementById('products-list');
+  container.innerHTML = '';
+
+  products.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'product-card';
+    card.style.animationDelay = `${i * 0.08}s`;
+
+    const benefitItems = p.benefits.map(b =>
+      `<li class="benefit-item">
+        <div class="benefit-dot"></div>
+        <div class="benefit-text"><strong>${b.title}.</strong> ${b.text}</div>
+      </li>`
+    ).join('');
+
+    const specRows = p.specs.map(s =>
+      `<tr>
+        <td>${s.label}</td>
+        <td>${s.value} <span class="spec-explain">${s.explain}</span></td>
+      </tr>`
+    ).join('');
+
+    const badgeClass = { best: 'badge-best', premium: 'badge-premium', cost: 'badge-cost' }[p.badge] || 'badge-best';
+
+    card.innerHTML = `
+      <div class="product-inner">
+        <div class="product-visual">
+          <img class="product-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
+          <span class="product-badge ${badgeClass}">${p.badgeLabel}</span>
         </div>
-        <!--/.container-->
-    </header>
-    <!--/.header-->
-    <div id="#top"></div>
-    <section id="home">
-        <div class="banner-container">
-            
+        <div class="product-content">
+          <div class="product-name">${p.name}</div>
+          <div class="product-model">${p.model}</div>
+          <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab(this, 'overview-${i}')">O que faz por você</button>
+            <button class="tab-btn" onclick="switchTab(this, 'specs-${i}')">Ficha Técnica</button>
+          </div>
+          <div id="overview-${i}" class="tab-content active">
+            <ul class="benefit-list">${benefitItems}</ul>
+          </div>
+          <div id="specs-${i}" class="tab-content">
+            <table class="specs-table">${specRows}</table>
+          </div>
         </div>
-    </section>
-    <section id="introText">
-        <div class="container">
-            <div class="text-center">
-            <img id="centro" align="center" src="images/CDN.png" alt="">
-            </div>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="price-tag">${p.price}</div>
+          <div class="price-note">${p.priceNote}</div>
         </div>
+        <a class="buy-btn" href="${p.link}" target="_blank" rel="noopener">
+          Ver produto e comprar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+      </div>
+    `;
 
-    </section>
-    <!--About-->
-    <section id="aboutUs" class="secPad">
-        <div class="container">
-            <div class="heading text-center">
-                <!-- Heading -->
-                <h2>Inovar</h2>
-                <p>Essa é a palavra de sucesso do seu negócio!</p>
-            </div>
-            <div class="row">
-                <!-- item -->
-                <div class="col-md-4 text-center tileBox">
-                   <div class="txtHead"> <i class="fa fa-desktop"></i>
-                    <h3>Criação de Sites</h3></div>
-                    <p>Desenvolvimento de sites responsivos com design personalizado e gerenciáveis que oferecem uma experiência agradável para o usuário, tanto em smartphones quanto em desktops.</p>
-                </div>
-                <!-- end: -->
+    container.appendChild(card);
+  });
+}
 
-                <!-- item -->
-                <div class="col-md-4 text-center tileBox">
-                    <div class="txtHead"><i class="fa fa-shopping-cart"></i>
-                    <h3>Loja Virtual</h3></div>
-                    <p>Desenvolvimento de lojas virtuais e soluções web personalizadas, seguras, integradas com as principais formas de pagamento para você começar a vender na internet.</p>
-                </div>
-                <!-- end: -->
+function switchTab(btn, tabId) {
+  const card = btn.closest('.product-content');
+  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  card.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
 
-                <!-- item -->
-                <div class="col-md-4 text-center tileBox">
-                    <div class="txtHead"><i class="fa fa-lightbulb-o"></i>
-                    <h3>Criação de Logo</h3></div>
-                    <p>Desenvolvimento de identidade da sua marca com padrão de qualidade, buscando extrair e transmitir suas ideias e valores do seu negócio.</p>
-                </div>
-                <!-- end: -->
-            </div>
-        </div>
-    </section>
-    <!--Quote-->
-    <section id="quote" class="bg-parlex">
-        <div class="parlex-back">
-            <div class="container secPad text-center">
-				<h2>Os que são loucos o suficiente para pensarem que podem mudar o mundo são os que o fazem.</h2><h3>-Steve Jobs</h3>
-            </div>
-            <!--/.container-->
-        </div>
-    </section>
-    
-       
-  
-   <!--Portfolio-->
-    <section id="portfolio" class="page-section section appear clearfix secPad">
-        <div class="container">
-
-            <div class="heading text-center">
-                <!-- Heading -->
-                <h2>Portfólio</h2>
-                <p>Conheça alguns dos trabalhos realizados</p>
-            </div>
-
-            <div class="row">
-                <nav id="filter" class="col-md-12 text-center">
-                    <ul>
-                        <li><a href="#" class="current btn-theme btn-small" data-filter="*">Todos</a></li>
-                        <li><a href="#" class="btn-theme btn-small" data-filter=".webdesign">Web Design</a></li>
-                        <li><a href="#" class="btn-theme btn-small" data-filter=".photography">Diversos</a></li>
-                        <li><a href="#" class="btn-theme btn-small" data-filter=".print">Logos</a></li>
-                    </ul>
-                </nav>
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="portfolio-items isotopeWrapper clearfix" id="3">
-
-                            <article class="col-sm-4 isotopeItem webdesign">
-                                <div class="portfolio-item">
-                                    <img src="images/portfolio/img8.png" alt="" />
-                                    <div class="portfolio-desc align-center">
-                                        <div class="folio-info">
-                                            <a href="images/portfolio/img8.png" class="fancybox">
-                                                <h5>Y7 Consultoria</h5>
-                                                <i class="fa fa-arrows-alt fa-2x"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            
-
-                            
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-	<!--Contact -->
-    <section id="contactUs" class="page-section secPad">
-        <div class="container">
-
-            <div class="row">
-                <div class="heading text-center">
-                    <!-- Heading -->
-                    <h2>Entre em contato!</h2>
-                    <p>Obrigado por sua visita, o mais breve possivel responderemos sua mensagem!</p>
-                </div>
-            </div>
-
-            <div class="row mrgn30">
-
-                <form action="envia.php" method="POST">
-
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <input type="text" class="form-control" name="nomeremetente" id="name" placeholder="Informe seu Nome" title="Informe seu Nome">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <input type="email" class="form-control" name="emailremetente" id="email" placeholder="Informe seu E-mail" title="Informe seu E-mail">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefone">Telefone</label>
-                            <input type="tel" class="form-control" name="assunto" id="telefone" placeholder="Informe seu Telefone" title="Informe seu Telefone">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="mensagem">Mensagem</label>
-                            <textarea name="mensagem" class="form-control" id="mensagem" cols="3" rows="5" placeholder="Digite a mensagem desejada" title="Digite a mensagem desejada"></textarea>
-                        </div>
-                        <button name="enviar" type="submit" value="Enviar" onclick="Enviar();" class="btn btn-lg btn-primary" id="submit">Enviar</button>
-                        <div class="result"></div>
-                    </div>
-                </form>
-                <div class="col-sm-4">
-                    <h4>E-mail</h4>
-                    <address>
-                        e-mail<br>
-
-                    </address>
-                    <h4>Telefone:</h4>
-                    <address>
-                        (48) 00000-0000<br>
-                    </address>
-                </div>
-            </div>
-        </div>
-        <!--/.container-->
-    </section>
-    <footer>
-        <div class="container">
-            <div class="social text-center">
-                
-                <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
-                
-            </div>
-
-            <div class="clear"></div>
-            <!--CLEAR FLOATS-->
-        </div>
-    </footer>
-    <!--/.page-section-->
-    <section class="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    Copyright 2025 | Todos os Direitos Reservados  - CDN Soluções Web</a>
-                </div>
-            </div>
-            <!-- / .row -->
-        </div>
-    </section>
-    <a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a>
-
-    <!--[if lte IE 8]><script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script><![endif]-->
-    <script src="js/modernizr-latest.js"></script>
-    <script src="js/jquery-1.8.2.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/jquery.isotope.min.js" type="text/javascript"></script>
-    <script src="js/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
-    <script src="js/jquery.nav.js" type="text/javascript"></script>
-    <script src="js/jquery.cslider.js" type="text/javascript"></script>
-    <script src="js/custom.js" type="text/javascript"></script>
-    <script src="js/owl-carousel/owl.carousel.js"></script>
+function resetAll() {
+  selectedCategory = null;
+  selectedUsecase = null;
+  document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('usecase-section').classList.remove('visible');
+  document.getElementById('products-section').classList.remove('visible');
+  document.getElementById('breadcrumb').classList.remove('visible');
+  document.getElementById('empty-state').classList.remove('visible');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
