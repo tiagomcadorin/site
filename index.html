@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TechGuia — Tecnologia explicada para você</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -50,11 +50,12 @@
   }
 
   .logo {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     color: var(--ink);
-    letter-spacing: -0.02em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
   .logo span { color: var(--accent); }
 
@@ -85,11 +86,12 @@
   }
 
   .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
     font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
     color: var(--ink);
     margin-bottom: 1rem;
   }
@@ -104,7 +106,7 @@
 
   /* CATEGORY SELECTOR */
   .section-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -155,7 +157,7 @@
   }
 
   .cat-name {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 1rem;
     font-weight: 700;
     color: var(--ink);
@@ -216,7 +218,7 @@
   }
 
   .products-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -293,7 +295,7 @@
   .product-content { padding: 1.75rem; }
 
   .product-name {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: 0.25rem;
@@ -378,7 +380,7 @@
   }
 
   .price-tag {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Barlow Condensed', sans-serif;
     font-size: 1.35rem;
     font-weight: 700;
     color: var(--ink);
@@ -433,7 +435,7 @@
   }
   .empty-state.visible { display: block; }
   .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; }
-  .empty-state h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
+  .empty-state h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
 
   /* ANIMATIONS */
   @keyframes fadeUp {
@@ -453,6 +455,69 @@
   .breadcrumb.visible { display: block; }
   .breadcrumb a { color: var(--ink-muted); text-decoration: underline; cursor: pointer; }
   .breadcrumb span { color: var(--ink-light); margin: 0 6px; }
+
+  /* =====================
+     RESPONSIVO — MOBILE
+  ===================== */
+  @media (max-width: 600px) {
+
+    nav { padding: 0 1.25rem; height: 52px; }
+    .nav-tagline { display: none; }
+
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .hero h1 { font-size: 2.4rem; line-height: 1.08; }
+    .hero p { font-size: 1rem; }
+
+    .categories-section,
+    .usecase-section,
+    .products-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+
+    .category-grid { grid-template-columns: 1fr 1fr; }
+    .category-card { padding: 1.25rem 1rem; }
+    .cat-icon { width: 36px; height: 36px; font-size: 18px; }
+    .cat-name { font-size: 0.95rem; }
+    .cat-desc { font-size: 12px; }
+
+    .usecase-pills { gap: 8px; }
+    .usecase-pill { width: 100%; text-align: center; padding: 10px 16px; font-size: 15px; }
+
+    .products-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .products-title { font-size: 1.4rem; }
+
+    .product-inner { grid-template-columns: 1fr; }
+    .product-visual {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1rem;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 1rem;
+    }
+    .product-img { width: 110px; height: 80px; }
+    .product-content { padding: 1.25rem; }
+    .product-name { font-size: 1.15rem; }
+
+    .tab-btn { font-size: 12px; padding: 7px 10px; }
+
+    .specs-table td:first-child { width: 40%; }
+    .specs-table td { font-size: 12px; padding: 7px 3px; }
+    .spec-explain { font-size: 10px; }
+
+    .product-footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1rem 1.25rem; }
+    .buy-btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 15px; }
+
+    footer { padding: 1.5rem 1.25rem; font-size: 12px; }
+  }
+
+  @media (min-width: 601px) and (max-width: 768px) {
+    .hero { padding: 3.5rem 1.5rem 2.5rem; }
+    .categories-section,
+    .usecase-section,
+    .products-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .product-inner { grid-template-columns: 200px 1fr; }
+    .product-visual { padding: 1.5rem; }
+    .product-img { width: 140px; height: 100px; }
+  }
 </style>
 </head>
 <body>
