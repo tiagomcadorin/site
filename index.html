@@ -61,9 +61,7 @@ nav { position:sticky; top:0; z-index:200; background:rgba(7,8,15,0.9); backdrop
 .btn-ghost { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; background:var(--cyan-glow2); color:var(--text); border:1px solid var(--border2); border-radius:100px; font-size:14px; font-weight:500; text-decoration:none; cursor:pointer; transition:all .2s; }
 .btn-ghost:hover { border-color:var(--cyan); color:var(--cyan); background:var(--cyan-glow); }
 
-.hero-stats { display:flex; justify-content:center; gap:3rem; margin-top:4rem; padding-top:3rem; border-top:1px solid var(--border); animation:fadeDown .6s .4s ease both; flex-wrap:wrap; }
-.stat-num { font-family:'Barlow Condensed',sans-serif; font-size:2.2rem; font-weight:800; color:var(--cyan); line-height:1; }
-.stat-label { font-size:12px; color:var(--text3); margin-top:4px; font-weight:300; }
+
 
 @keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
 @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
@@ -78,6 +76,32 @@ nav { position:sticky; top:0; z-index:200; background:rgba(7,8,15,0.9); backdrop
 .sec-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; text-transform:uppercase; color:#fff; letter-spacing:.02em; line-height:1.1; margin-bottom:.75rem; }
 .sec-title span { color:var(--cyan); }
 .sec-sub { font-size:1rem; color:var(--text2); font-weight:300; max-width:540px; line-height:1.7; margin-bottom:2rem; }
+
+.helper-box { 
+  background:var(--cyan-glow); 
+  border:1px solid var(--border2); 
+  border-radius:var(--radius-lg); 
+  padding:1rem 1.25rem; 
+  margin-bottom:2rem; 
+  display:flex; 
+  gap:12px; 
+  align-items:flex-start;
+  max-width:600px;
+}
+.helper-icon { 
+  font-size:1.2rem; 
+  flex-shrink:0; 
+  margin-top:2px;
+}
+.helper-text { 
+  font-size:13px; 
+  color:var(--text2); 
+  line-height:1.6;
+}
+.helper-text strong { 
+  color:var(--cyan); 
+  font-weight:600;
+}
 
 /* STEPS */
 .step-row { display:flex; align-items:center; gap:1rem; margin-bottom:2.5rem; flex-wrap:wrap; }
@@ -139,6 +163,27 @@ nav { position:sticky; top:0; z-index:200; background:rgba(7,8,15,0.9); backdrop
 .badge-premium { background:rgba(180,80,255,.1); color:#c77dff; border:1px solid rgba(180,80,255,.25); }
 
 .prod-body { padding:1.75rem; }
+
+.prod-rec { 
+  display:inline-flex; 
+  align-items:center; 
+  gap:6px; 
+  font-size:11px; 
+  font-weight:600; 
+  letter-spacing:0.06em; 
+  text-transform:uppercase; 
+  color:var(--cyan); 
+  background:var(--cyan-glow); 
+  border:1px solid var(--border2); 
+  padding:4px 10px; 
+  border-radius:100px; 
+  margin-bottom:0.75rem;
+}
+.prod-rec svg { 
+  width:12px; 
+  height:12px;
+}
+
 .prod-name { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:#fff; margin-bottom:2px; }
 .prod-model { font-size:12px; color:var(--text3); margin-bottom:1.25rem; }
 
@@ -199,8 +244,6 @@ footer p { font-size:12px; color:var(--text3); font-weight:300; line-height:1.8;
   .hero { padding:3.5rem 1.25rem 3rem; }
   .hero h1 { font-size:2.5rem; }
   .hero p { font-size:.95rem; }
-  .hero-stats { gap:1.5rem; margin-top:2.5rem; padding-top:2rem; }
-  .stat-num { font-size:1.7rem; }
   .section { padding:3rem 1.25rem; }
   .cat-grid { grid-template-columns:1fr 1fr; gap:8px; }
   .cat-card { padding:1rem .9rem; }
@@ -238,19 +281,12 @@ footer p { font-size:12px; color:var(--text3); font-weight:300; line-height:1.8;
   <div class="hero-inner">
     <div class="hero-badge"><span class="hero-dot"></span>Para quem não é técnico</div>
     <h1>Encontre o equipamento<br><em>certo</em> para você</h1>
-    <p>Chega de especificações confusas. Aqui você entende o que cada produto realmente faz, e por que vale a pena escolher um ou outro.</p>
+    <p>A gente explica o que realmente importa — sem complicação, sem termos técnicos. Só o que você precisa saber para fazer a escolha certa.</p>
     <div class="hero-actions">
       <button class="btn-primary" onclick="document.getElementById('escolha').scrollIntoView({behavior:'smooth'})">
-        Escolher meu equipamento
+        Começar agora
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       </button>
-      <button class="btn-ghost" onclick="document.getElementById('escolha').scrollIntoView({behavior:'smooth'})">Como funciona</button>
-    </div>
-    <div class="hero-stats">
-      <div><div class="stat-num">8+</div><div class="stat-label">Produtos avaliados</div></div>
-      <div><div class="stat-num">4</div><div class="stat-label">Categorias</div></div>
-      <div><div class="stat-num">0</div><div class="stat-label">Jargões técnicos</div></div>
-      <div><div class="stat-num">100%</div><div class="stat-label">Em português claro</div></div>
     </div>
   </div>
 </section>
@@ -267,9 +303,14 @@ footer p { font-size:12px; color:var(--text3); font-weight:300; line-height:1.8;
     <div class="step-chip" id="chip-3"><span class="step-num">3</span> Ver produtos</div>
   </div>
 
-  <div class="sec-label">Passo 1</div>
-  <h2 class="sec-title">Qual categoria<br><span>você precisa?</span></h2>
-  <p class="sec-sub">Escolha o tipo de equipamento que está buscando.</p>
+  <div class="sec-label">Passo 1 de 3</div>
+  <h2 class="sec-title">O que você<br><span>quer comprar?</span></h2>
+  <p class="sec-sub">Clique no equipamento que está procurando:</p>
+
+  <div class="helper-box">
+    <div class="helper-icon">💡</div>
+    <div class="helper-text"><strong>Por que isso importa?</strong> Cada tipo de equipamento tem características diferentes. Um monitor para assistir filmes precisa de qualidades completamente diferentes de um monitor para trabalhar com planilhas.</div>
+  </div>
 
   <div class="cat-grid">
     <div class="cat-card" onclick="selectCat('monitor',this)">
@@ -297,9 +338,9 @@ footer p { font-size:12px; color:var(--text3); font-weight:300; line-height:1.8;
   <!-- PASSO 2 -->
   <div class="uc-wrap" id="uc-wrap">
     <hr class="sec-divider">
-    <div class="sec-label">Passo 2</div>
-    <h2 class="sec-title">Para que você<br><span>vai usar?</span></h2>
-    <p class="sec-sub">Escolha o perfil mais próximo do seu.</p>
+    <div class="sec-label">Passo 2 de 3</div>
+    <h2 class="sec-title">Como você vai<br><span>usar isso?</span></h2>
+    <p class="sec-sub">Escolha a opção que mais combina com você:</p>
     <div class="uc-grid" id="uc-grid"></div>
   </div>
 
@@ -548,6 +589,7 @@ function renderProducts(prods){
     const ben=p.benefits.map(b=>`<li class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>${b.t}.</strong> ${b.d}</div></li>`).join('');
     const sp=p.specs.map(s=>`<tr><td>${s.l}</td><td>${s.v}<span class="spec-explain">${s.e}</span></td></tr>`).join('');
     const bc={best:'badge-best',cost:'badge-cost',premium:'badge-premium'}[p.badge]||'badge-best';
+    const recLabel={best:'👍 Nossa recomendação',cost:'💰 Melhor preço',premium:'⭐ Premium'}[p.badge]||'👍 Recomendado';
     const card=document.createElement('div');
     card.className='prod-card';
     card.innerHTML=`
@@ -557,11 +599,14 @@ function renderProducts(prods){
           <span class="prod-badge ${bc}">${p.badgeLabel}</span>
         </div>
         <div class="prod-body">
+          <div class="prod-rec">
+            ${recLabel}
+          </div>
           <div class="prod-name">${p.name}</div>
           <div class="prod-model">${p.model}</div>
           <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab(this,'ov${i}')">O que faz por você</button>
-            <button class="tab-btn" onclick="switchTab(this,'sp${i}')">Ficha Técnica</button>
+            <button class="tab-btn active" onclick="switchTab(this,'ov${i}')">Por que escolher</button>
+            <button class="tab-btn" onclick="switchTab(this,'sp${i}')">Detalhes técnicos</button>
           </div>
           <div id="ov${i}" class="tab-content active"><ul class="benefit-list">${ben}</ul></div>
           <div id="sp${i}" class="tab-content"><table class="specs-table">${sp}</table></div>
