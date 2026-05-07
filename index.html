@@ -146,9 +146,6 @@ nav { position:sticky; top:0; z-index:200; background:rgba(7,8,15,0.9); backdrop
 .prod-head-title { font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:800; text-transform:uppercase; color:#fff; letter-spacing:.03em; }
 .ctx-tag { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text3); }
 .ctx-tag span { background:var(--cyan-glow); border:1px solid var(--border2); color:var(--cyan); padding:3px 10px; border-radius:4px; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
-.prod-banner { display:none; margin-bottom:2rem; border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; }
-.prod-banner.visible { display:block; }
-.prod-banner-img { width:100%; display:block; object-fit:cover; max-height:320px; }
 
 /* PROD CARD */
 .prod-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.5rem; transition:all .25s; position:relative; }
@@ -355,7 +352,6 @@ footer p { font-size:12px; color:var(--text3); font-weight:300; line-height:1.8;
       <div class="prod-head-title" id="prod-title">Monitores</div>
       <div class="ctx-tag" id="ctx-tag"></div>
     </div>
-    <div class="prod-banner" id="prod-banner"></div>
     <div id="prod-list"></div>
   </div>
 
@@ -539,17 +535,6 @@ let selCat=null,selUC=null;
 
 function setChip(n){[1,2,3].forEach(i=>document.getElementById('chip-'+i).classList.toggle('active',i<=n));}
 
-function updateBanner(cat){
-  const banner=document.getElementById('prod-banner');
-  if(cat==='monitor'){
-    banner.innerHTML=`<img class="prod-banner-img" src="https://images.pexels.com/photos/5720564/pexels-photo-5720564.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Monitores modernos" />`;
-    banner.classList.add('visible');
-  } else {
-    banner.innerHTML='';
-    banner.classList.remove('visible');
-  }
-}
-
 function selectCat(cat,el){
   selCat=cat; selUC=null;
   document.querySelectorAll('.cat-card').forEach(c=>c.classList.remove('active'));
@@ -589,7 +574,6 @@ function selectUC(id,name,emoji,el){
   const bc=document.getElementById('breadcrumb');
   bc.innerHTML=`<a onclick="resetAll()">Início</a><span class="bc-sep">›</span>${catLabel}<span class="bc-sep">›</span>${name}`;
   bc.classList.add('visible');
-  updateBanner(selCat);
   renderProducts(prods);
   const w=document.getElementById('prod-wrap');
   w.classList.add('visible','animate-in');
@@ -653,7 +637,6 @@ function resetAll(){
   document.getElementById('prod-wrap').classList.remove('visible');
   document.getElementById('empty-state').classList.remove('visible');
   document.getElementById('breadcrumb').classList.remove('visible');
-  updateBanner(null);
   setChip(1);
   window.scrollTo({top:0,behavior:'smooth'});
 }
