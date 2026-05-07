@@ -5,950 +5,595 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TechGuia — Tecnologia explicada para você</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --ink: #0f0f0d;
-    --ink-muted: #5a5851;
-    --ink-light: #9a9890;
-    --surface: #fafaf7;
-    --surface-2: #f2f1ec;
-    --surface-3: #e8e6df;
-    --accent: #d45a1e;
-    --accent-2: #1a3a5c;
-    --accent-3: #1d6e4f;
-    --border: rgba(15,15,13,0.1);
-    --border-strong: rgba(15,15,13,0.2);
-    --radius: 4px;
-    --radius-lg: 12px;
-    --radius-xl: 20px;
-  }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--surface);
-    color: var(--ink);
-    line-height: 1.6;
-    font-size: 16px;
-    min-height: 100vh;
-  }
-
-  /* NAV */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60px;
-  }
-
-  .logo {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: var(--ink);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .logo span { color: var(--accent); }
-
-  .nav-tagline {
-    font-size: 13px;
-    color: var(--ink-muted);
-    font-weight: 300;
-  }
-
-  /* HERO */
-  .hero {
-    padding: 5rem 2rem 3rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .hero-label {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: rgba(212,90,30,0.1);
-    padding: 4px 12px;
-    border-radius: 2px;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
-    color: var(--ink);
-    margin-bottom: 1rem;
-  }
-
-  .hero p {
-    font-size: 1.1rem;
-    color: var(--ink-muted);
-    font-weight: 300;
-    max-width: 560px;
-    line-height: 1.7;
-  }
-
-  /* CATEGORY SELECTOR */
-  .section-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-light);
-    margin-bottom: 1rem;
-  }
-
-  .categories-section {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem 3rem;
-  }
-
-  .category-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .category-card {
-    background: var(--surface);
-    padding: 1.75rem 1.5rem;
-    cursor: pointer;
-    transition: background 0.15s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .category-card:hover { background: var(--surface-2); }
-  .category-card.active { background: var(--ink); color: white; }
-  .category-card.active .cat-name { color: white; }
-  .category-card.active .cat-desc { color: rgba(255,255,255,0.6); }
-  .category-card.active .cat-icon { background: rgba(255,255,255,0.15); color: white; }
-
-  .cat-icon {
-    width: 40px; height: 40px;
-    background: var(--surface-2);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    margin-bottom: 0.5rem;
-  }
-
-  .cat-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .cat-desc {
-    font-size: 13px;
-    color: var(--ink-muted);
-    font-weight: 300;
-  }
-
-  /* USE CASE SELECTOR */
-  .usecase-section {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem 3rem;
-    display: none;
-  }
-  .usecase-section.visible { display: block; }
-
-  .usecase-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .usecase-pill {
-    padding: 8px 18px;
-    border: 1px solid var(--border-strong);
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 400;
-    cursor: pointer;
-    transition: all 0.15s;
-    background: var(--surface);
-    color: var(--ink);
-  }
-
-  .usecase-pill:hover { background: var(--surface-2); border-color: var(--ink); }
-  .usecase-pill.active { background: var(--ink); color: white; border-color: var(--ink); }
-
-  /* PRODUCTS SECTION */
-  .products-section {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 2rem 5rem;
-    display: none;
-  }
-  .products-section.visible { display: block; }
-
-  .products-header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .products-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-  }
-
-  .context-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--ink-muted);
-  }
-
-  .context-badge span {
-    background: var(--surface-3);
-    padding: 3px 10px;
-    border-radius: 2px;
-    font-weight: 500;
-    color: var(--ink);
-    font-size: 12px;
-  }
-
-  /* PRODUCT CARD */
-  .product-card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-    background: var(--surface);
-    transition: box-shadow 0.2s;
-  }
-
-  .product-card:hover { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
-
-  .product-inner {
-    display: grid;
-    grid-template-columns: 260px 1fr;
-  }
-
-  @media (max-width: 640px) {
-    .product-inner { grid-template-columns: 1fr; }
-  }
-
-  .product-visual {
-    background: var(--surface-2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    flex-direction: column;
-    gap: 1rem;
-    border-right: 1px solid var(--border);
-  }
-
-  .product-img {
-    width: 180px;
-    height: 130px;
-    object-fit: contain;
-  }
-
-  .product-badge {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 2px;
-  }
-
-  .badge-best { background: rgba(29,110,79,0.12); color: #0f5c3a; }
-  .badge-cost { background: rgba(26,58,92,0.12); color: #0e3660; }
-  .badge-premium { background: rgba(212,90,30,0.12); color: #993a10; }
-
-  .product-content { padding: 1.75rem; }
-
-  .product-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.01em;
-  }
-
-  .product-model {
-    font-size: 12px;
-    color: var(--ink-light);
-    margin-bottom: 1rem;
-    font-weight: 400;
-  }
-
-  /* TABS */
-  .tabs {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1.25rem;
-  }
-
-  .tab-btn {
-    padding: 8px 16px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--ink-muted);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    transition: all 0.15s;
-    background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    margin-bottom: -1px;
-  }
-
-  .tab-btn:hover { color: var(--ink); }
-  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
-
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-
-  /* BENEFITS */
-  .benefit-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-
-  .benefit-item {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .benefit-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    margin-top: 7px;
-    flex-shrink: 0;
-  }
-
-  .benefit-text { font-size: 14px; line-height: 1.6; color: var(--ink-muted); }
-  .benefit-text strong { color: var(--ink); font-weight: 500; }
-
-  /* SPECS TABLE */
-  .specs-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .specs-table tr { border-bottom: 1px solid var(--border); }
-  .specs-table tr:last-child { border-bottom: none; }
-  .specs-table td { padding: 8px 4px; vertical-align: top; }
-  .specs-table td:first-child { color: var(--ink-muted); width: 45%; font-weight: 400; }
-  .specs-table td:last-child { font-weight: 500; color: var(--ink); }
-  .spec-explain { display: block; font-size: 11px; font-weight: 300; color: var(--ink-light); margin-top: 2px; }
-
-  /* BUY BUTTON */
-  .product-footer {
-    padding: 1rem 1.75rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    background: var(--surface-2);
-  }
-
-  .price-tag {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--ink);
-  }
-
-  .price-note { font-size: 12px; color: var(--ink-muted); font-weight: 300; margin-top: 2px; }
-
-  .buy-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 22px;
-    background: var(--ink);
-    color: white;
-    border-radius: 100px;
-    font-size: 14px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background 0.15s, transform 0.1s;
-    cursor: pointer;
-    border: none;
-  }
-
-  .buy-btn:hover { background: var(--accent); transform: translateY(-1px); }
-  .buy-btn svg { width: 14px; height: 14px; }
-
-  /* DIVIDER */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 2.5rem 0;
-  }
-
-  /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 2rem;
-    text-align: center;
-    font-size: 13px;
-    color: var(--ink-light);
-    font-weight: 300;
-  }
-
-  footer strong { color: var(--ink-muted); font-weight: 500; }
-
-  /* EMPTY STATE */
-  .empty-state {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--ink-muted);
-    display: none;
-  }
-  .empty-state.visible { display: block; }
-  .empty-state-icon { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; }
-  .empty-state h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; margin-bottom: 0.5rem; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-in { animation: fadeUp 0.3s ease forwards; }
-
-  /* breadcrumb */
-  .breadcrumb {
-    font-size: 13px;
-    color: var(--ink-muted);
-    margin-bottom: 1.5rem;
-    display: none;
-  }
-  .breadcrumb.visible { display: block; }
-  .breadcrumb a { color: var(--ink-muted); text-decoration: underline; cursor: pointer; }
-  .breadcrumb span { color: var(--ink-light); margin: 0 6px; }
-
-  /* =====================
-     RESPONSIVO — MOBILE
-  ===================== */
-  @media (max-width: 600px) {
-
-    nav { padding: 0 1.25rem; height: 52px; }
-    .nav-tagline { display: none; }
-
-    .hero { padding: 2.5rem 1.25rem 2rem; }
-    .hero h1 { font-size: 2.4rem; line-height: 1.08; }
-    .hero p { font-size: 1rem; }
-
-    .categories-section,
-    .usecase-section,
-    .products-section { padding-left: 1.25rem; padding-right: 1.25rem; }
-
-    .category-grid { grid-template-columns: 1fr 1fr; }
-    .category-card { padding: 1.25rem 1rem; }
-    .cat-icon { width: 36px; height: 36px; font-size: 18px; }
-    .cat-name { font-size: 0.95rem; }
-    .cat-desc { font-size: 12px; }
-
-    .usecase-pills { gap: 8px; }
-    .usecase-pill { width: 100%; text-align: center; padding: 10px 16px; font-size: 15px; }
-
-    .products-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-    .products-title { font-size: 1.4rem; }
-
-    .product-inner { grid-template-columns: 1fr; }
-    .product-visual {
-      border-right: none;
-      border-bottom: 1px solid var(--border);
-      padding: 1.25rem 1rem;
-      flex-direction: row;
-      justify-content: flex-start;
-      gap: 1rem;
-    }
-    .product-img { width: 110px; height: 80px; }
-    .product-content { padding: 1.25rem; }
-    .product-name { font-size: 1.15rem; }
-
-    .tab-btn { font-size: 12px; padding: 7px 10px; }
-
-    .specs-table td:first-child { width: 40%; }
-    .specs-table td { font-size: 12px; padding: 7px 3px; }
-    .spec-explain { font-size: 10px; }
-
-    .product-footer { flex-direction: column; align-items: flex-start; gap: 0.75rem; padding: 1rem 1.25rem; }
-    .buy-btn { width: 100%; justify-content: center; padding: 12px 20px; font-size: 15px; }
-
-    footer { padding: 1.5rem 1.25rem; font-size: 12px; }
-  }
-
-  @media (min-width: 601px) and (max-width: 768px) {
-    .hero { padding: 3.5rem 1.5rem 2.5rem; }
-    .categories-section,
-    .usecase-section,
-    .products-section { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .product-inner { grid-template-columns: 200px 1fr; }
-    .product-visual { padding: 1.5rem; }
-    .product-img { width: 140px; height: 100px; }
-  }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #07080f;
+  --bg2: #0d0f1c;
+  --bg3: #111428;
+  --card: #0f1220;
+  --card2: #141729;
+  --cyan: #00d4ff;
+  --cyan-glow: rgba(0,212,255,0.13);
+  --cyan-glow2: rgba(0,212,255,0.06);
+  --blue: #4f8ef7;
+  --text: #e8eaf0;
+  --text2: #8b90a8;
+  --text3: #545870;
+  --border: rgba(0,212,255,0.1);
+  --border2: rgba(0,212,255,0.28);
+  --radius: 6px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+}
+html { scroll-behavior: smooth; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; font-size:16px; overflow-x:hidden; }
+
+/* NAV */
+nav { position:sticky; top:0; z-index:200; background:rgba(7,8,15,0.9); backdrop-filter:blur(14px); border-bottom:1px solid var(--border); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:58px; }
+.logo { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.5rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--text); }
+.logo span { color:var(--cyan); }
+.nav-right { display:flex; align-items:center; gap:1.25rem; }
+.nav-tagline { font-size:12px; color:var(--text3); font-weight:300; }
+.nav-pill { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--cyan); border:1px solid var(--border2); padding:5px 14px; border-radius:100px; background:var(--cyan-glow2); }
+
+/* HERO */
+.hero { position:relative; overflow:hidden; padding:6rem 2rem 5rem; text-align:center;
+  background:radial-gradient(ellipse 80% 55% at 50% -5%, rgba(0,180,255,0.2) 0%, transparent 70%),
+             radial-gradient(ellipse 40% 40% at 85% 50%, rgba(79,142,247,0.1) 0%, transparent 60%), var(--bg); }
+.hero::before { content:''; position:absolute; inset:0;
+  background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);
+  background-size:48px 48px; pointer-events:none; }
+.hero-inner { position:relative; max-width:820px; margin:0 auto; }
+
+.hero-badge { display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--cyan); border:1px solid var(--border2); background:var(--cyan-glow2); padding:6px 16px; border-radius:100px; margin-bottom:1.75rem; animation:fadeDown .6s ease both; }
+.hero-dot { width:6px; height:6px; border-radius:50%; background:var(--cyan); animation:pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+.hero h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(2.8rem,7vw,5.2rem); font-weight:800; line-height:1.0; letter-spacing:0.02em; text-transform:uppercase; color:#fff; margin-bottom:1.25rem; animation:fadeDown .6s .1s ease both; }
+.hero h1 em { font-style:normal; color:var(--cyan); text-shadow:0 0 40px rgba(0,212,255,.5); }
+.hero p { font-size:1.05rem; color:var(--text2); font-weight:300; max-width:520px; margin:0 auto 2.5rem; line-height:1.75; animation:fadeDown .6s .2s ease both; }
+.hero-actions { display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; animation:fadeDown .6s .3s ease both; }
+
+.btn-primary { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; background:var(--cyan); color:var(--bg); border-radius:100px; font-size:14px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; cursor:pointer; border:none; transition:all .2s; box-shadow:0 0 24px rgba(0,212,255,.35); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 0 40px rgba(0,212,255,.55); }
+.btn-ghost { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; background:var(--cyan-glow2); color:var(--text); border:1px solid var(--border2); border-radius:100px; font-size:14px; font-weight:500; text-decoration:none; cursor:pointer; transition:all .2s; }
+.btn-ghost:hover { border-color:var(--cyan); color:var(--cyan); background:var(--cyan-glow); }
+
+.hero-stats { display:flex; justify-content:center; gap:3rem; margin-top:4rem; padding-top:3rem; border-top:1px solid var(--border); animation:fadeDown .6s .4s ease both; flex-wrap:wrap; }
+.stat-num { font-family:'Barlow Condensed',sans-serif; font-size:2.2rem; font-weight:800; color:var(--cyan); line-height:1; }
+.stat-label { font-size:12px; color:var(--text3); margin-top:4px; font-weight:300; }
+
+@keyframes fadeDown { from{opacity:0;transform:translateY(-12px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+/* GLOW DIVIDER */
+.gdiv { height:1px; background:linear-gradient(90deg,transparent,rgba(0,212,255,.3),transparent); border:none; }
+
+/* SECTION */
+.section { max-width:960px; margin:0 auto; padding:5rem 2rem; }
+.sec-label { display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--cyan); margin-bottom:.75rem; }
+.sec-label::before { content:''; width:24px; height:1px; background:var(--cyan); }
+.sec-title { font-family:'Barlow Condensed',sans-serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; text-transform:uppercase; color:#fff; letter-spacing:.02em; line-height:1.1; margin-bottom:.75rem; }
+.sec-title span { color:var(--cyan); }
+.sec-sub { font-size:1rem; color:var(--text2); font-weight:300; max-width:540px; line-height:1.7; margin-bottom:2rem; }
+
+/* STEPS */
+.step-row { display:flex; align-items:center; gap:1rem; margin-bottom:2.5rem; flex-wrap:wrap; }
+.step-chip { display:flex; align-items:center; gap:8px; padding:6px 14px 6px 8px; border-radius:100px; border:1px solid var(--border); background:var(--card); font-size:13px; color:var(--text3); transition:all .2s; }
+.step-chip.active { border-color:var(--border2); background:var(--cyan-glow); color:var(--cyan); }
+.step-num { width:22px; height:22px; border-radius:50%; background:var(--bg3); display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:var(--text3); border:1px solid var(--border); }
+.step-chip.active .step-num { background:var(--cyan); color:var(--bg); border-color:var(--cyan); }
+.step-arr { color:var(--text3); font-size:13px; }
+
+/* CAT GRID */
+.cat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+.cat-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem 1.25rem; cursor:pointer; transition:all .2s; display:flex; flex-direction:column; gap:.5rem; position:relative; overflow:hidden; }
+.cat-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--cyan),transparent); opacity:0; transition:opacity .2s; }
+.cat-card:hover { border-color:var(--border2); background:var(--card2); transform:translateY(-2px); }
+.cat-card:hover::before { opacity:1; }
+.cat-card.active { border-color:var(--cyan); background:var(--cyan-glow); box-shadow:0 0 24px rgba(0,212,255,.08); }
+.cat-card.active::before { opacity:1; }
+.cat-card.active .c-name { color:var(--cyan); }
+.cat-icon { width:42px; height:42px; background:var(--bg3); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; border:1px solid var(--border); margin-bottom:.4rem; }
+.c-name { font-family:'Barlow Condensed',sans-serif; font-size:1.05rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text); }
+.c-desc { font-size:12px; color:var(--text3); font-weight:300; line-height:1.4; }
+
+/* UC */
+.uc-wrap { display:none; }
+.uc-wrap.visible { display:block; }
+.uc-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px; }
+.uc-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius-lg); padding:1.25rem; cursor:pointer; transition:all .2s; display:flex; flex-direction:column; gap:4px; position:relative; overflow:hidden; }
+.uc-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--cyan),var(--blue)); opacity:0; transition:opacity .2s; }
+.uc-card:hover { border-color:var(--border2); background:var(--card2); }
+.uc-card:hover::after { opacity:.5; }
+.uc-card.active { border-color:var(--cyan); background:var(--cyan-glow); }
+.uc-card.active::after { opacity:1; }
+.uc-card.active .uc-name { color:var(--cyan); }
+.uc-emoji { font-size:1.4rem; margin-bottom:4px; }
+.uc-name { font-family:'Barlow Condensed',sans-serif; font-size:1rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:var(--text); }
+.uc-desc { font-size:11px; color:var(--text3); line-height:1.4; }
+
+/* PRODUCTS */
+.prod-wrap { display:none; }
+.prod-wrap.visible { display:block; }
+.prod-head { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:2rem; flex-wrap:wrap; gap:1rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border); }
+.prod-head-title { font-family:'Barlow Condensed',sans-serif; font-size:1.6rem; font-weight:800; text-transform:uppercase; color:#fff; letter-spacing:.03em; }
+.ctx-tag { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--text3); }
+.ctx-tag span { background:var(--cyan-glow); border:1px solid var(--border2); color:var(--cyan); padding:3px 10px; border-radius:4px; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; }
+
+/* PROD CARD */
+.prod-card { background:var(--card); border:1px solid var(--border); border-radius:var(--radius-xl); overflow:hidden; margin-bottom:1.5rem; transition:all .25s; position:relative; }
+.prod-card::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent 10%,var(--cyan) 50%,transparent 90%); opacity:0; transition:opacity .3s; }
+.prod-card:hover { border-color:rgba(0,212,255,.22); box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 0 1px rgba(0,212,255,.07); }
+.prod-card:hover::before { opacity:1; }
+
+.prod-inner { display:grid; grid-template-columns:280px 1fr; }
+.prod-visual { background:linear-gradient(135deg,var(--bg3),#0a0c1a); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:2rem 1.5rem; gap:1rem; border-right:1px solid var(--border); position:relative; overflow:hidden; }
+.prod-visual::after { content:''; position:absolute; bottom:-40px; left:50%; transform:translateX(-50%); width:160px; height:160px; border-radius:50%; background:radial-gradient(circle,rgba(0,212,255,.1),transparent 70%); pointer-events:none; }
+.prod-img { width:180px; height:130px; object-fit:contain; position:relative; z-index:1; filter:drop-shadow(0 4px 20px rgba(0,212,255,.18)); }
+.prod-badge { font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:4px 12px; border-radius:100px; z-index:1; }
+.badge-best { background:rgba(0,212,255,.1); color:var(--cyan); border:1px solid rgba(0,212,255,.3); }
+.badge-cost { background:rgba(79,142,247,.1); color:#7aacff; border:1px solid rgba(79,142,247,.3); }
+.badge-premium { background:rgba(180,80,255,.1); color:#c77dff; border:1px solid rgba(180,80,255,.25); }
+
+.prod-body { padding:1.75rem; }
+.prod-name { font-family:'Barlow Condensed',sans-serif; font-size:1.3rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:#fff; margin-bottom:2px; }
+.prod-model { font-size:12px; color:var(--text3); margin-bottom:1.25rem; }
+
+.tabs { display:flex; border-bottom:1px solid var(--border); margin-bottom:1.25rem; }
+.tab-btn { padding:8px 16px; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--text3); cursor:pointer; border-bottom:2px solid transparent; transition:all .15s; background:none; border-top:none; border-left:none; border-right:none; margin-bottom:-1px; }
+.tab-btn:hover { color:var(--text); }
+.tab-btn.active { color:var(--cyan); border-bottom-color:var(--cyan); }
+.tab-content { display:none; }
+.tab-content.active { display:block; }
+
+.benefit-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.benefit-item { display:flex; gap:10px; align-items:flex-start; padding:10px 12px; background:var(--bg3); border-radius:var(--radius); border:1px solid var(--border); transition:border-color .15s; }
+.benefit-item:hover { border-color:var(--border2); }
+.benefit-dot { width:6px; height:6px; border-radius:50%; background:var(--cyan); margin-top:7px; flex-shrink:0; box-shadow:0 0 8px rgba(0,212,255,.6); }
+.benefit-text { font-size:13px; line-height:1.6; color:var(--text2); }
+.benefit-text strong { color:var(--text); font-weight:500; }
+
+.specs-table { width:100%; border-collapse:collapse; font-size:13px; }
+.specs-table tr { border-bottom:1px solid var(--border); }
+.specs-table tr:last-child { border-bottom:none; }
+.specs-table tr:hover td { background:rgba(0,212,255,.02); }
+.specs-table td { padding:9px 6px; vertical-align:top; }
+.specs-table td:first-child { color:var(--text3); width:42%; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }
+.specs-table td:last-child { font-weight:500; color:var(--text); }
+.spec-explain { display:block; font-size:11px; font-weight:300; color:var(--text3); margin-top:3px; text-transform:none; letter-spacing:0; }
+
+.prod-footer { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding:1.25rem 1.75rem; border-top:1px solid var(--border); background:linear-gradient(135deg,var(--bg3),var(--bg2)); }
+.price-tag { font-family:'Barlow Condensed',sans-serif; font-size:2rem; font-weight:800; color:var(--cyan); line-height:1; text-shadow:0 0 20px rgba(0,212,255,.4); }
+.price-note { font-size:11px; color:var(--text3); margin-top:4px; }
+.buy-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; background:var(--cyan); color:var(--bg); border-radius:100px; font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; transition:all .2s; border:none; cursor:pointer; box-shadow:0 0 20px rgba(0,212,255,.3); }
+.buy-btn:hover { transform:translateY(-2px); box-shadow:0 0 36px rgba(0,212,255,.5); }
+.buy-btn svg { width:14px; height:14px; }
+
+.breadcrumb { font-size:12px; color:var(--text3); margin-bottom:1.5rem; display:none; letter-spacing:.04em; }
+.breadcrumb.visible { display:block; }
+.breadcrumb a { color:var(--text3); text-decoration:underline; cursor:pointer; }
+.breadcrumb a:hover { color:var(--cyan); }
+.bc-sep { margin:0 8px; opacity:.4; }
+
+.empty-state { text-align:center; padding:5rem 2rem; display:none; }
+.empty-state.visible { display:block; }
+.empty-icon { font-size:3rem; margin-bottom:1rem; opacity:.3; }
+.empty-state h3 { font-family:'Barlow Condensed',sans-serif; font-size:1.4rem; font-weight:700; text-transform:uppercase; color:var(--text2); margin-bottom:.5rem; }
+.empty-state p { font-size:14px; color:var(--text3); }
+
+footer { border-top:1px solid var(--border); padding:2.5rem 2rem; text-align:center; }
+.foot-logo { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:1.3rem; letter-spacing:.08em; text-transform:uppercase; color:var(--text2); margin-bottom:.5rem; }
+.foot-logo span { color:var(--cyan); }
+footer p { font-size:12px; color:var(--text3); font-weight:300; line-height:1.8; }
+
+.animate-in { animation:fadeUp .35s ease both; }
+.sec-divider { border:none; border-top:1px solid var(--border); margin:3rem 0; }
+
+/* RESPONSIVE */
+@media (max-width:600px) {
+  nav { padding:0 1.25rem; height:52px; }
+  .nav-tagline,.nav-pill { display:none; }
+  .hero { padding:3.5rem 1.25rem 3rem; }
+  .hero h1 { font-size:2.5rem; }
+  .hero p { font-size:.95rem; }
+  .hero-stats { gap:1.5rem; margin-top:2.5rem; padding-top:2rem; }
+  .stat-num { font-size:1.7rem; }
+  .section { padding:3rem 1.25rem; }
+  .cat-grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .cat-card { padding:1rem .9rem; }
+  .cat-icon { width:36px; height:36px; font-size:18px; }
+  .uc-grid { grid-template-columns:1fr 1fr; gap:8px; }
+  .prod-inner { grid-template-columns:1fr; }
+  .prod-visual { border-right:none; border-bottom:1px solid var(--border); flex-direction:row; justify-content:flex-start; padding:1.25rem; gap:1rem; }
+  .prod-img { width:100px; height:75px; }
+  .prod-body { padding:1.25rem; }
+  .prod-footer { flex-direction:column; align-items:flex-start; padding:1rem 1.25rem; }
+  .buy-btn { width:100%; justify-content:center; }
+  .tab-btn { font-size:11px; padding:7px 9px; }
+  .prod-head { flex-direction:column; align-items:flex-start; }
+  .step-arr { display:none; }
+  footer { padding:2rem 1.25rem; }
+}
+@media (min-width:601px) and (max-width:800px) {
+  .section { padding:4rem 1.5rem; }
+  .prod-inner { grid-template-columns:220px 1fr; }
+  .prod-img { width:150px; height:110px; }
+}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="logo">Tech<span>Guia</span></div>
-  <div class="nav-tagline">Tecnologia sem complicação</div>
+  <div class="nav-right">
+    <span class="nav-tagline">Tecnologia sem complicação</span>
+    <span class="nav-pill">100% gratuito</span>
+  </div>
 </nav>
 
 <section class="hero">
-  <div class="hero-label">Para quem não é técnico</div>
-  <h1>Encontre o equipamento certo<br>para o que você precisa.</h1>
-  <p>Chega de especificações confusas. Aqui você entende o que cada produto realmente faz pela sua vida — e por que vale a pena.</p>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="hero-dot"></span>Para quem não é técnico</div>
+    <h1>Encontre o equipamento<br><em>certo</em> para você</h1>
+    <p>Chega de especificações confusas. Aqui você entende o que cada produto realmente faz — e por que vale a pena escolher um ou outro.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('escolha').scrollIntoView({behavior:'smooth'})">
+        Escolher meu equipamento
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="16" height="16"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </button>
+      <button class="btn-ghost" onclick="document.getElementById('escolha').scrollIntoView({behavior:'smooth'})">Como funciona</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">8+</div><div class="stat-label">Produtos avaliados</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label">Categorias</div></div>
+      <div><div class="stat-num">0</div><div class="stat-label">Jargões técnicos</div></div>
+      <div><div class="stat-num">100%</div><div class="stat-label">Em português claro</div></div>
+    </div>
+  </div>
 </section>
 
-<!-- STEP 1: CATEGORIAS -->
-<section class="categories-section">
-  <p class="section-title">Passo 1 — Escolha a categoria</p>
-  <div class="category-grid">
-    <div class="category-card" onclick="selectCategory('monitor')">
+<hr class="gdiv">
+
+<div class="section" id="escolha">
+
+  <div class="step-row" id="step-row">
+    <div class="step-chip active" id="chip-1"><span class="step-num">1</span> Categoria</div>
+    <span class="step-arr">›</span>
+    <div class="step-chip" id="chip-2"><span class="step-num">2</span> Tipo de uso</div>
+    <span class="step-arr">›</span>
+    <div class="step-chip" id="chip-3"><span class="step-num">3</span> Ver produtos</div>
+  </div>
+
+  <div class="sec-label">Passo 1</div>
+  <h2 class="sec-title">Qual categoria<br><span>você precisa?</span></h2>
+  <p class="sec-sub">Escolha o tipo de equipamento que está buscando.</p>
+
+  <div class="cat-grid">
+    <div class="cat-card" onclick="selectCat('monitor',this)">
       <div class="cat-icon">🖥️</div>
-      <div class="cat-name">Monitor</div>
-      <div class="cat-desc">A tela que fica na sua mesa</div>
+      <div class="c-name">Monitor</div>
+      <div class="c-desc">A tela que fica na sua mesa</div>
     </div>
-    <div class="category-card" onclick="selectCategory('notebook')">
+    <div class="cat-card" onclick="selectCat('notebook',this)">
       <div class="cat-icon">💻</div>
-      <div class="cat-name">Notebook</div>
-      <div class="cat-desc">Computador para levar com você</div>
+      <div class="c-name">Notebook</div>
+      <div class="c-desc">Computador para levar com você</div>
     </div>
-    <div class="category-card" onclick="selectCategory('teclado')">
+    <div class="cat-card" onclick="selectCat('teclado',this)">
       <div class="cat-icon">⌨️</div>
-      <div class="cat-name">Teclado</div>
-      <div class="cat-desc">Para digitar com conforto</div>
+      <div class="c-name">Teclado</div>
+      <div class="c-desc">Para digitar com conforto</div>
     </div>
-    <div class="category-card" onclick="selectCategory('mouse')">
+    <div class="cat-card" onclick="selectCat('mouse',this)">
       <div class="cat-icon">🖱️</div>
-      <div class="cat-name">Mouse</div>
-      <div class="cat-desc">Controle e precisão na mão</div>
+      <div class="c-name">Mouse</div>
+      <div class="c-desc">Controle e precisão na mão</div>
     </div>
   </div>
-</section>
 
-<!-- STEP 2: USO -->
-<section class="usecase-section" id="usecase-section">
-  <p class="section-title">Passo 2 — Para que você vai usar?</p>
-  <div class="usecase-pills" id="usecase-pills"></div>
-</section>
-
-<!-- STEP 3: PRODUTOS -->
-<section class="products-section" id="products-section">
-  <div class="breadcrumb" id="breadcrumb"></div>
-  <div class="products-header">
-    <div class="products-title" id="products-title">Monitores</div>
-    <div class="context-badge" id="context-badge"></div>
+  <!-- PASSO 2 -->
+  <div class="uc-wrap" id="uc-wrap">
+    <hr class="sec-divider">
+    <div class="sec-label">Passo 2</div>
+    <h2 class="sec-title">Para que você<br><span>vai usar?</span></h2>
+    <p class="sec-sub">Escolha o perfil mais próximo do seu.</p>
+    <div class="uc-grid" id="uc-grid"></div>
   </div>
-  <div id="products-list"></div>
-</section>
 
-<section class="categories-section empty-state" id="empty-state">
-  <div class="empty-state-icon">🔧</div>
-  <h3>Em breve por aqui</h3>
-  <p>Essa categoria ainda está sendo preparada com muito cuidado. Volte em breve!</p>
-</section>
+  <!-- PASSO 3 -->
+  <div class="prod-wrap" id="prod-wrap">
+    <hr class="sec-divider">
+    <div class="breadcrumb" id="breadcrumb"></div>
+    <div class="prod-head">
+      <div class="prod-head-title" id="prod-title">Monitores</div>
+      <div class="ctx-tag" id="ctx-tag"></div>
+    </div>
+    <div id="prod-list"></div>
+  </div>
+
+  <div class="empty-state" id="empty-state">
+    <div class="empty-icon">🔧</div>
+    <h3>Em breve</h3>
+    <p>Essa categoria está sendo preparada. Volte em breve!</p>
+  </div>
+
+</div>
+
+<hr class="gdiv">
 
 <footer>
-  <strong>TechGuia</strong> — Recomendações honestas, explicadas para pessoas reais.<br>
-  Os links de compra levam para os produtos nas lojas parceiras. Preços podem variar.
+  <div class="foot-logo">Tech<span>Guia</span></div>
+  <p>Recomendações honestas, explicadas para pessoas reais.<br>Os links levam para produtos nas lojas parceiras. Preços podem variar.</p>
 </footer>
 
 <script>
-const data = {
-  monitor: {
-    label: "Monitor",
-    usecases: [
-      { id: "home", label: "🏠 Uso doméstico", desc: "Redes sociais, filmes, videochamadas" },
-      { id: "office", label: "💼 Corporativo / Trabalho", desc: "Excel, e-mail, videoconferências" },
-      { id: "games", label: "🎮 Games", desc: "Jogos casuais ou competitivos" },
-      { id: "design", label: "🎨 Design / Foto / Vídeo", desc: "Edição de imagens e vídeos" },
+const DATA = {
+  monitor:{
+    usecases:[
+      {id:'home',emoji:'🏠',name:'Uso Doméstico',desc:'Filmes, redes sociais, videochamadas'},
+      {id:'office',emoji:'💼',name:'Trabalho',desc:'Excel, e-mail, home office'},
+      {id:'games',emoji:'🎮',name:'Games',desc:'Jogos casuais ou competitivos'},
+      {id:'design',emoji:'🎨',name:'Design / Foto',desc:'Edição de imagens e vídeos'},
     ],
-    products: {
-      home: [
-        {
-          name: "LG 24MP400",
-          model: "LG 24MP400-B · 24 polegadas",
-          badge: "best",
-          badgeLabel: "Melhor custo-benefício",
-          img: "https://images.tcdn.com.br/img/img_prod/756520/monitor_lg_24mp400_b_24_full_hd_ips_75hz_1ms_hdmi_vga_freesync_preto_1186_1_b1dc8b6a3cdf73e0b31f94ed79e9e12c.jpg",
-          price: "R$ 699",
-          priceNote: "na Amazon · parcelável em até 10x",
-          benefits: [
-            { title: "Imagem nítida o dia todo", text: "A tela IPS mantém as cores bonitas mesmo quando você olha de lado — perfeito para assistir filmes com família ou fazer videochamadas sem perder qualidade." },
-            { title: "Olhos que agradecem", text: "A tecnologia anti-cintilação reduz o cansaço visual. Se você passa horas na tela, seus olhos vão sentir a diferença no final do dia." },
-            { title: "Tamanho ideal para casa", text: "24 polegadas é o ponto doce para uso doméstico: não ocupa muito espaço na mesa, mas a imagem não fica pequena demais para filmes ou navegação." },
-            { title: "Conexão fácil", text: "Tem entrada HDMI — o mesmo cabo do seu televisor. Conecta com qualquer notebook ou computador sem precisar de adaptadores." },
-          ],
-          specs: [
-            { label: "Tamanho da tela", value: "24 polegadas", explain: "Equivale a uma boa tela de notebook, mas mais larga e ergonômica" },
-            { label: "Resolução Full HD", value: "1920 × 1080", explain: "Imagem nítida para tudo que você faz no dia a dia" },
-            { label: "Taxa de atualização", value: "75 Hz", explain: "A tela se redesenha 75x por segundo — rolagem e vídeos ficam bem suaves" },
-            { label: "Tempo de resposta", value: "5ms", explain: "Velocidade com que a tela reage — para uso doméstico, mais do que suficiente" },
-            { label: "Painel", value: "IPS", explain: "Cores fiéis e boa visibilidade de qualquer ângulo" },
-            { label: "Entradas", value: "HDMI + VGA", explain: "Compatível com praticamente qualquer dispositivo" },
-          ],
-          link: "https://www.amazon.com.br/dp/B08T6X7F7T"
-        },
-        {
-          name: "Samsung 27\" S3",
-          model: "Samsung LS27C310EALXZD · 27 polegadas",
-          badge: "premium",
-          badgeLabel: "Experiência ampliada",
-          img: "https://images.samsung.com/is/image/samsung/p6pim/br/ls27c310ealxzd/gallery/br-monitor-s3-ls27c310ealxzd-534841003?$650_519_PNG$",
-          price: "R$ 1.099",
-          priceNote: "na Samsung Store · frete grátis",
-          benefits: [
-            { title: "Tela grande que faz diferença", text: "27 polegadas transforma a experiência: séries, filmes e vídeos no YouTube ficam com outra dimensão. É como ter um cinema pessoal na mesa." },
-            { title: "Imagem mais viva e colorida", text: "O painel IPS deste modelo reproduz cores com mais vivacidade — você vai notar que fotos e vídeos parecem mais reais e bonitos." },
-            { title: "Funciona como segunda tela do notebook", text: "Conecte seu notebook e use os dois ao mesmo tempo — um para trabalho, outro para entretenimento. Produtividade dobrada sem esforço." },
-            { title: "Design discreto que combina com qualquer ambiente", text: "Bordas finas e visual clean que não agride a decoração da sua casa ou home office." },
-          ],
-          specs: [
-            { label: "Tamanho da tela", value: "27 polegadas", explain: "Confortável para longas sessões de uso, sem forçar a visão" },
-            { label: "Resolução Full HD", value: "1920 × 1080", explain: "Nítido para filmes, séries e navegação do dia a dia" },
-            { label: "Taxa de atualização", value: "75 Hz", explain: "Rolagem e movimentos na tela bem suaves" },
-            { label: "Painel", value: "IPS", explain: "Cores consistentes de qualquer posição que você estiver" },
-            { label: "Ajuste de inclinação", value: "Sim (tilt)", explain: "Você inclina a tela para a posição mais confortável para o seu pescoço" },
-            { label: "Entradas", value: "HDMI + D-Sub", explain: "Conecta com notebook, PC e videogame" },
-          ],
-          link: "https://www.samsung.com/br/monitors/flat/monitor-27-s3-ls27c310ealxzd/"
-        }
+    products:{
+      home:[
+        {name:'LG 24MP400',model:'LG 24MP400-B · 24 polegadas',badge:'best',badgeLabel:'Melhor custo-benefício',
+         img:'https://images.tcdn.com.br/img/img_prod/756520/monitor_lg_24mp400_b_24_full_hd_ips_75hz_1ms_hdmi_vga_freesync_preto_1186_1_b1dc8b6a3cdf73e0b31f94ed79e9e12c.jpg',
+         price:'R$ 699',priceNote:'na Amazon · parcelável em até 10x',
+         benefits:[
+           {t:'Imagem nítida o dia todo',d:'A tela IPS mantém as cores bonitas mesmo quando você olha de lado — perfeito para filmes em família ou videochamadas.'},
+           {t:'Olhos que agradecem',d:'A tecnologia anti-cintilação reduz o cansaço visual. Se você passa horas na tela, seus olhos vão sentir a diferença no fim do dia.'},
+           {t:'Tamanho ideal para casa',d:'24 polegadas é o ponto doce: não ocupa muito espaço, mas não fica pequeno demais para filmes ou navegação.'},
+           {t:'Conexão fácil',d:'Tem entrada HDMI — o mesmo cabo do seu televisor. Conecta com qualquer notebook sem adaptadores.'},
+         ],
+         specs:[
+           {l:'Tamanho',v:'24 polegadas',e:'Equivale a uma boa tela de notebook, mas mais larga e ergonômica'},
+           {l:'Resolução',v:'Full HD (1920×1080)',e:'Imagem nítida para tudo que você faz no dia a dia'},
+           {l:'Taxa de atualização',v:'75 Hz',e:'A tela se redesenha 75× por segundo — rolagem e vídeos ficam suaves'},
+           {l:'Tempo de resposta',v:'5ms',e:'Velocidade que a tela reage — para uso doméstico, mais que suficiente'},
+           {l:'Painel',v:'IPS',e:'Cores fiéis e boa visibilidade de qualquer ângulo'},
+           {l:'Entradas',v:'HDMI + VGA',e:'Compatível com praticamente qualquer dispositivo'},
+         ],link:'https://www.amazon.com.br/dp/B08T6X7F7T'},
+        {name:'Samsung 27" S3',model:'Samsung LS27C310 · 27 polegadas',badge:'premium',badgeLabel:'Experiência ampliada',
+         img:'https://images.samsung.com/is/image/samsung/p6pim/br/ls27c310ealxzd/gallery/br-monitor-s3-ls27c310ealxzd-534841003?$650_519_PNG$',
+         price:'R$ 1.099',priceNote:'na Samsung Store · frete grátis',
+         benefits:[
+           {t:'Tela grande que faz diferença',d:'27 polegadas transforma a experiência: séries e filmes ficam com outra dimensão — é como ter um cinema pessoal na mesa.'},
+           {t:'Imagem mais viva e colorida',d:'O painel IPS reproduz cores com mais vivacidade — fotos e vídeos parecem mais reais e bonitos.'},
+           {t:'Segunda tela para o notebook',d:'Conecte seu notebook e use os dois ao mesmo tempo — um para trabalho, outro para entretenimento.'},
+           {t:'Design discreto',d:'Bordas finas e visual clean que combina com qualquer ambiente.'},
+         ],
+         specs:[
+           {l:'Tamanho',v:'27 polegadas',e:'Confortável para longas sessões, sem forçar a visão'},
+           {l:'Resolução',v:'Full HD (1920×1080)',e:'Nítido para filmes, séries e navegação'},
+           {l:'Taxa de atualização',v:'75 Hz',e:'Rolagem e movimentos bem suaves na tela'},
+           {l:'Painel',v:'IPS',e:'Cores consistentes de qualquer posição'},
+           {l:'Ajuste',v:'Inclinação (tilt)',e:'Incline para a posição mais confortável ao seu pescoço'},
+           {l:'Entradas',v:'HDMI + D-Sub',e:'Conecta com notebook, PC e videogame'},
+         ],link:'https://www.samsung.com/br/monitors/flat/monitor-27-s3-ls27c310ealxzd/'},
       ],
-      office: [
-        {
-          name: "Dell 24\" P2422H",
-          model: "Dell P2422H · 24 polegadas · Profissional",
-          badge: "best",
-          badgeLabel: "Preferido por empresas",
-          img: "https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2422h/pdp/monitor-p2422h-pdp-hero.psd?fmt=jpg&wid=500&hei=350",
-          price: "R$ 1.349",
-          priceNote: "na Dell Store · com nota fiscal",
-          benefits: [
-            { title: "Perfeito para planilhas e documentos longos", text: "A tela é mais alta do que os monitores comuns, mostrando mais linhas de uma planilha ou mais parágrafos de um documento ao mesmo tempo — menos rolar, mais produtividade." },
-            { title: "Posição que protege seu corpo", text: "Você consegue ajustar altura, inclinação e até girar a tela. Isso evita dor no pescoço e nas costas em longas jornadas de trabalho." },
-            { title: "Imagem que não cansa os olhos em reuniões longas", text: "A tela não pisca (sem flicker) e tem luz azul reduzida, dois fatores que diminuem muito o cansaço em dias de muitas videoconferências." },
-            { title: "Certificado para ambientes corporativos", text: "Dell é uma das marcas mais usadas em empresas no mundo. Isso significa confiabilidade, garantia extendida e suporte técnico real quando você precisar." },
-          ],
-          specs: [
-            { label: "Tamanho da tela", value: "24 polegadas", explain: "Tamanho padrão corporativo — cabe bem em qualquer mesa de escritório" },
-            { label: "Resolução", value: "1920 × 1080 (Full HD)", explain: "Textos e planilhas sempre nítidos" },
-            { label: "Ajuste ergonômico", value: "Altura + Giro + Inclinação", explain: "Adapta a tela ao seu corpo, não o contrário" },
-            { label: "Taxa de atualização", value: "60 Hz", explain: "Suficiente para trabalho — a tela não precisa ser mais rápida que o seu olho lendo documentos" },
-            { label: "Entrada USB", value: "Hub USB integrado", explain: "Conecte mouse, pen drive e outros acessórios diretamente no monitor" },
-            { label: "Garantia", value: "3 anos Dell", explain: "Se o monitor apresentar defeito, a Dell troca sem burocracia" },
-          ],
-          link: "https://www.dell.com/pt-br/shop/monitors-monitor-accessories/dell-monitor-p2422h/spd/dell-p2422h-monitor"
-        },
-        {
-          name: "LG 27\" QHD UltraFine",
-          model: "LG 27UK850 · 27 polegadas · 4K",
-          badge: "premium",
-          badgeLabel: "Para profissionais exigentes",
-          img: "https://www.lg.com/br/images/monitores/md05886862/gallery/DZ-01.jpg",
-          price: "R$ 2.299",
-          priceNote: "na LG Store ou Amazon",
-          benefits: [
-            { title: "Texto tão nítido que parece impresso", text: "A resolução 4K faz letras e números ficarem afiados como papel impresso. Quem trabalha o dia inteiro com texto vai notar imediatamente — menos esforço para os olhos, mais conforto." },
-            { title: "Espaço de trabalho muito maior na tela", text: "Com mais resolução você consegue ver duas janelas lado a lado com conforto real. É como ter dois monitores de computador comuns em um só." },
-            { title: "Carrega o notebook pelo cabo da tela", text: "Conecta um cabo só (USB-C) e a tela já carrega seu MacBook ou notebook compatível. Menos fios na mesa." },
-            { title: "Cores precisas para apresentações e relatórios", text: "O que você vê na tela é o que aparece na impressão ou no projetor da sala de reunião. Nada de surpresas com cores erradas." },
-          ],
-          specs: [
-            { label: "Tamanho da tela", value: "27 polegadas", explain: "Espaço real para trabalhar com conforto" },
-            { label: "Resolução", value: "3840 × 2160 (4K)", explain: "4x mais detalhe que Full HD — texto e imagens perfeitos" },
-            { label: "Conexão USB-C", value: "Sim (85W de carga)", explain: "Um cabo conecta e carrega o notebook ao mesmo tempo" },
-            { label: "Painel", value: "IPS 4K", explain: "Cores fiéis de qualquer ângulo" },
-            { label: "Hub USB", value: "2x USB 3.0", explain: "Conecte acessórios diretamente no monitor" },
-            { label: "Taxa de atualização", value: "60 Hz", explain: "Ideal para trabalho — não é feito para jogos" },
-          ],
-          link: "https://www.amazon.com.br/dp/B07DJ2C57L"
-        }
+      office:[
+        {name:'Dell 24" P2422H',model:'Dell P2422H · 24 polegadas · Profissional',badge:'best',badgeLabel:'Preferido por empresas',
+         img:'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/peripherals/monitors/p-series/p2422h/pdp/monitor-p2422h-pdp-hero.psd?fmt=jpg&wid=500&hei=350',
+         price:'R$ 1.349',priceNote:'na Dell Store · com nota fiscal',
+         benefits:[
+           {t:'Perfeito para planilhas longas',d:'Mostra mais linhas ao mesmo tempo — menos rolagem, mais produtividade no dia a dia.'},
+           {t:'Posição que protege seu corpo',d:'Você ajusta altura, inclinação e giro. Isso evita dor no pescoço e costas em longas jornadas.'},
+           {t:'Olhos descansados em reuniões',d:'Tela sem cintilação e luz azul reduzida — menos cansaço em dias cheios de videoconferências.'},
+           {t:'Confiabilidade corporativa',d:'Dell é a marca mais usada em empresas no mundo — garantia de 3 anos e suporte real.'},
+         ],
+         specs:[
+           {l:'Tamanho',v:'24 polegadas',e:'Padrão corporativo — cabe bem em qualquer mesa de escritório'},
+           {l:'Resolução',v:'Full HD (1920×1080)',e:'Textos e planilhas sempre nítidos'},
+           {l:'Ergonomia',v:'Altura + Giro + Inclinação',e:'Adapta a tela ao seu corpo, não o contrário'},
+           {l:'Taxa de atualização',v:'60 Hz',e:'Suficiente para trabalho'},
+           {l:'USB integrado',v:'Hub USB embutido',e:'Conecte mouse e pen drive direto no monitor'},
+           {l:'Garantia',v:'3 anos Dell',e:'Defeito? A Dell resolve sem burocracia'},
+         ],link:'https://www.dell.com/pt-br/shop/monitors-monitor-accessories/dell-monitor-p2422h/spd/dell-p2422h-monitor'},
+        {name:'LG 27" UltraFine 4K',model:'LG 27UK850 · 27 polegadas · 4K',badge:'premium',badgeLabel:'Para profissionais exigentes',
+         img:'https://www.lg.com/br/images/monitores/md05886862/gallery/DZ-01.jpg',
+         price:'R$ 2.299',priceNote:'na LG Store ou Amazon',
+         benefits:[
+           {t:'Texto nítido como papel impresso',d:'A resolução 4K faz letras e números ficarem afiados. Quem trabalha o dia todo com texto vai notar imediatamente.'},
+           {t:'Espaço de trabalho enorme',d:'Dá para ver duas janelas lado a lado com conforto real — como ter dois monitores em um só.'},
+           {t:'Carrega o notebook pelo cabo da tela',d:'Um cabo USB-C conecta e carrega seu MacBook ao mesmo tempo. Menos fios na mesa.'},
+           {t:'Cores precisas para apresentações',d:'O que você vê na tela é o que aparece no projetor da reunião — sem surpresas.'},
+         ],
+         specs:[
+           {l:'Tamanho',v:'27 polegadas',e:'Espaço real para trabalhar com conforto'},
+           {l:'Resolução',v:'4K (3840×2160)',e:'4× mais detalhe que Full HD — texto e imagens perfeitos'},
+           {l:'USB-C',v:'Sim (85W de carga)',e:'Um cabo conecta e carrega o notebook ao mesmo tempo'},
+           {l:'Painel',v:'IPS 4K',e:'Cores fiéis de qualquer ângulo'},
+           {l:'Hub USB',v:'2× USB 3.0',e:'Conecte acessórios direto no monitor'},
+           {l:'Taxa de atualização',v:'60 Hz',e:'Ideal para trabalho'},
+         ],link:'https://www.amazon.com.br/dp/B07DJ2C57L'},
       ],
-      games: [
-        {
-          name: "AOC 27\" C27G2",
-          model: "AOC C27G2 · 27 polegadas · Curvo",
-          badge: "best",
-          badgeLabel: "Melhor entrada para games",
-          img: "https://aoc.com/content/uploads/2020/01/C27G2_Front-1-600x436.jpg",
-          price: "R$ 1.499",
-          priceNote: "na Amazon · disponível para entrega imediata",
-          benefits: [
-            { title: "Movimentos ultrasuaves — sem borrão", text: "A tela se atualiza 165 vezes por segundo, muito mais rápido que os monitores comuns. Isso significa que quando você move o personagem, a imagem acompanha sem ficar borrada ou com fantasmas." },
-            { title: "Tela curva que te coloca dentro do jogo", text: "A leve curvatura envolve sua visão periférica e dá a sensação de estar dentro do ambiente do jogo. A imersão aumenta de verdade." },
-            { title: "Zero travamento em cenas de ação", text: "FreeSync sincroniza a tela com a sua placa de vídeo. O resultado: sem travamentos, sem imagem 'rasgada', mesmo nos momentos mais agitados do jogo." },
-            { title: "Resposta tão rápida que você reage antes do inimigo", text: "Com 1ms de tempo de resposta, a tela reage praticamente instantâneo ao que acontece no jogo — diferença real em jogos competitivos." },
-          ],
-          specs: [
-            { label: "Taxa de atualização", value: "165 Hz", explain: "Quanto maior, mais suave o movimento na tela — jogos exigem 144Hz ou mais para uma boa experiência" },
-            { label: "Tempo de resposta", value: "1ms (MPRT)", explain: "Velocidade que a tela reage — 1ms é o nível mais rápido disponível, essencial para jogos rápidos" },
-            { label: "Resolução", value: "1920 × 1080 (Full HD)", explain: "Funciona bem com placas de vídeo mais acessíveis" },
-            { label: "Sincronização adaptativa", value: "AMD FreeSync Premium", explain: "Elimina o 'rasgado' na imagem sem precisar de hardware extra" },
-            { label: "Curvatura", value: "1500R", explain: "Quanto menor o número, mais curva — este aqui tem curvatura perceptível e imersiva" },
-            { label: "Painel", value: "VA", explain: "Pretos mais profundos — cenas noturnas e de suspense ficam mais impactantes" },
-          ],
-          link: "https://www.amazon.com.br/dp/B08DTML5RG"
-        },
-        {
-          name: "Samsung Odyssey G7",
-          model: "Samsung LC32G75T · 32 polegadas · WQHD",
-          badge: "premium",
-          badgeLabel: "Para jogadores sérios",
-          img: "https://images.samsung.com/is/image/samsung/p6pim/br/lc32g75tqslxzd/gallery/br-odyssey-g7-c32g75t-lc32g75tqslxzd-thumb-535042127?$200_200_PNG$",
-          price: "R$ 3.299",
-          priceNote: "na Samsung Store",
-          benefits: [
-            { title: "32 polegadas de imersão total", text: "Uma tela desse tamanho com curvatura agressiva preenche completamente seu campo de visão. É a diferença entre assistir ao jogo e estar dentro dele." },
-            { title: "Imagem mais detalhada que Full HD", text: "A resolução WQHD mostra mais detalhes do que Full HD — você enxerga inimigos à distância, texturas do ambiente e elementos do mapa com muito mais clareza." },
-            { title: "240Hz — a tela mais rápida da categoria", text: "240 atualizações por segundo significa a imagem mais fluida possível. Para jogos competitivos como CS2, Valorant ou Fortnite, isso pode ser o diferencial entre ganhar e perder." },
-            { title: "Preto de verdade — contraste cinematográfico", text: "O painel VA deste monitor entrega pretos profundos e contraste alto. Cenas noturnas, jogos de terror e qualquer ambiente escuro ficam impactantes como no cinema." },
-          ],
-          specs: [
-            { label: "Taxa de atualização", value: "240 Hz", explain: "O mais alto disponível no mercado — diferença visível em jogos rápidos" },
-            { label: "Resolução", value: "2560 × 1440 (WQHD)", explain: "50% mais detalhado que Full HD, sem precisar de uma placa de vídeo top de linha" },
-            { label: "Curvatura", value: "1000R", explain: "Curvatura bem pronunciada — envolve o campo visual periférico completamente" },
-            { label: "Tempo de resposta", value: "1ms (GtG)", explain: "Máxima velocidade possível" },
-            { label: "Sincronização", value: "FreeSync + G-Sync compatível", explain: "Funciona com placas AMD e NVIDIA sem travamentos" },
-            { label: "HDR", value: "HDR 600", explain: "Cenas com luz e sombra ao mesmo tempo ficam mais ricas e realistas" },
-          ],
-          link: "https://www.samsung.com/br/monitors/gaming/odyssey-g7-c32g7-lc32g75tqslxzd/"
-        }
+      games:[
+        {name:'AOC 27" C27G2',model:'AOC C27G2 · 27 polegadas · Curvo',badge:'best',badgeLabel:'Melhor entrada para games',
+         img:'https://aoc.com/content/uploads/2020/01/C27G2_Front-1-600x436.jpg',
+         price:'R$ 1.499',priceNote:'na Amazon · disponível imediatamente',
+         benefits:[
+           {t:'Movimentos ultrasuaves sem borrão',d:'165× por segundo — quando você move o personagem, a imagem acompanha sem borrar nem fantasmar.'},
+           {t:'Tela curva que te coloca no jogo',d:'A curvatura envolve sua visão periférica. A imersão aumenta de verdade — você sente que está dentro do ambiente.'},
+           {t:'Zero travamento em cenas de ação',d:'FreeSync sincroniza a tela com sua placa de vídeo: sem travamentos, sem imagem rasgada.'},
+           {t:'Reação antes do inimigo',d:'Com 1ms de resposta, a tela reage praticamente instantâneo — diferença real em jogos competitivos.'},
+         ],
+         specs:[
+           {l:'Taxa de atualização',v:'165 Hz',e:'Quanto maior, mais suave — jogos pedem 144 Hz ou mais'},
+           {l:'Tempo de resposta',v:'1ms (MPRT)',e:'O mais rápido disponível — essencial em jogos rápidos'},
+           {l:'Resolução',v:'Full HD (1920×1080)',e:'Funciona bem com placas de vídeo mais acessíveis'},
+           {l:'Sincronização',v:'AMD FreeSync Premium',e:'Elimina o rasgado na imagem sem hardware extra'},
+           {l:'Curvatura',v:'1500R',e:'Curvatura perceptível e imersiva'},
+           {l:'Painel',v:'VA',e:'Pretos mais profundos — cenas noturnas mais impactantes'},
+         ],link:'https://www.amazon.com.br/dp/B08DTML5RG'},
+        {name:'Samsung Odyssey G7',model:'Samsung LC32G75T · 32 polegadas · WQHD',badge:'premium',badgeLabel:'Para jogadores sérios',
+         img:'https://images.samsung.com/is/image/samsung/p6pim/br/lc32g75tqslxzd/gallery/br-odyssey-g7-c32g75t-lc32g75tqslxzd-thumb-535042127?$200_200_PNG$',
+         price:'R$ 3.299',priceNote:'na Samsung Store',
+         benefits:[
+           {t:'32 polegadas de imersão total',d:'A curvatura agressiva preenche completamente seu campo de visão. É a diferença entre assistir ao jogo e estar dentro dele.'},
+           {t:'Imagem mais detalhada que Full HD',d:'WQHD mostra mais detalhes — você enxerga inimigos à distância e elementos do mapa com muito mais clareza.'},
+           {t:'240 Hz — a tela mais rápida',d:'Para CS2, Valorant ou Fortnite, 240 atualizações por segundo pode ser o diferencial entre ganhar e perder.'},
+           {t:'Preto de verdade',d:'O painel VA entrega pretos profundos. Cenas noturnas e terror ficam cinematográficos.'},
+         ],
+         specs:[
+           {l:'Taxa de atualização',v:'240 Hz',e:'O mais alto disponível — diferença visível em jogos rápidos'},
+           {l:'Resolução',v:'WQHD (2560×1440)',e:'50% mais detalhado que Full HD'},
+           {l:'Curvatura',v:'1000R',e:'Curvatura pronunciada — envolve o campo visual periférico'},
+           {l:'Tempo de resposta',v:'1ms (GtG)',e:'Máxima velocidade possível'},
+           {l:'Sincronização',v:'FreeSync + G-Sync',e:'Funciona com placas AMD e NVIDIA sem travamentos'},
+           {l:'HDR',v:'HDR 600',e:'Cenas com luz e sombra ficam mais ricas e realistas'},
+         ],link:'https://www.samsung.com/br/monitors/gaming/odyssey-g7-c32g7-lc32g75tqslxzd/'},
       ],
-      design: [
-        {
-          name: "BenQ SW270C",
-          model: "BenQ SW270C · 27 polegadas · Profissional",
-          badge: "best",
-          badgeLabel: "Escolha dos fotógrafos",
-          img: "https://m.media-amazon.com/images/I/71RBvFbtGfL._AC_SL1500_.jpg",
-          price: "R$ 3.899",
-          priceNote: "na Amazon BR",
-          benefits: [
-            { title: "O que você edita é exatamente o que sai impresso", text: "Este monitor é calibrado de fábrica para mostrar as cores como elas realmente são. Nada de editar uma foto e ela sair diferente na impressão ou no celular do cliente." },
-            { title: "Proteção contra luz que atrapalha a cor", text: "Vem com um escudo lateral que bloqueia reflexos e claridade do ambiente — fundamental para trabalhos sérios de edição onde cada tom de cor importa." },
-            { title: "Suporte para cartão de memória da câmera", text: "Conecta cartão SD diretamente no monitor. Sem precisar de adaptadores ou hubs externos para importar fotos." },
-            { title: "Modo preto e branco real", text: "Para fotografia em P&B, você pode ver a edição em preto e branco real direto na tela — sem misturar com as cores do ambiente." },
-          ],
-          specs: [
-            { label: "Cobertura de cores (sRGB)", value: "99%", explain: "Mostra praticamente todas as cores que câmeras, celulares e impressoras trabalham" },
-            { label: "Cobertura Adobe RGB", value: "99%", explain: "Padrão profissional — cobre cores que a tela comum simplesmente não consegue mostrar" },
-            { label: "Calibração de fábrica", value: "Sim (relatório incluso)", explain: "Cada monitor sai da fábrica verificado — você pode confiar nas cores sem calibrar manualmente" },
-            { label: "Resolução", value: "2560 × 1440 (WQHD)", explain: "Detalhes finos visíveis — importante ao retocar cabelos, skin texture e elementos delicados" },
-            { label: "Painel", value: "IPS Wide Gamut", explain: "Reproduz cores que monitores comuns não conseguem exibir" },
-            { label: "USB-C", value: "Sim (60W)", explain: "Conecta MacBook e notebooks modernos com um único cabo" },
-          ],
-          link: "https://www.amazon.com.br/dp/B08F5KXZS8"
-        },
-        {
-          name: "ASUS ProArt PA278QV",
-          model: "ASUS ProArt PA278QV · 27 polegadas",
-          badge: "cost",
-          badgeLabel: "Profissional mais acessível",
-          img: "https://dlcdnimgs.asus.com/websites/global/products/YgxzRxgpidZeiBQL/img/kv.jpg",
-          price: "R$ 2.499",
-          priceNote: "na Kabum ou Amazon",
-          benefits: [
-            { title: "Cores corretas sem precisar calibrar", text: "Vem calibrado e com certificação de precisão de cores. Você abre o produto e já pode confiar na tela para trabalho profissional." },
-            { title: "Grande espaço de trabalho para multitarefa", text: "A resolução WQHD permite ter Adobe Premiere, Photoshop e Lightroom abertos ao mesmo tempo sem sacrificar o espaço de trabalho de nenhum." },
-            { title: "Ergonomia completa para longas sessões", text: "Ajuste de altura, rotação e inclinação. Quando você usa a tela por horas, poder posicioná-la do jeito certo faz diferença no cansaço físico." },
-            { title: "Compatível com todos os softwares profissionais", text: "Reconhecido e recomendado pela Adobe. Cores que você vê no Photoshop são as mesmas que aparecem no trabalho final entregue ao cliente." },
-          ],
-          specs: [
-            { label: "Cobertura de cores (sRGB)", value: "100%", explain: "Reproduz todas as cores do padrão web e redes sociais com perfeição" },
-            { label: "Resolução", value: "2560 × 1440 (WQHD)", explain: "Ideal para edição de fotos e vídeos sem precisar de placa de vídeo ultra potente" },
-            { label: "Painel", value: "IPS", explain: "Cores precisas de qualquer ângulo — essencial para mostrar trabalhos a clientes" },
-            { label: "Taxa de atualização", value: "75 Hz", explain: "Suficiente para design — editores de imagem não precisam de alta frequência" },
-            { label: "Entradas", value: "HDMI 2.0 · DisplayPort · USB-A", explain: "Conecta com qualquer computador ou notebook profissional" },
-            { label: "Ajuste ergonômico", value: "Altura + Pivô + Inclinação", explain: "Posicione exatamente como seu corpo precisa" },
-          ],
-          link: "https://www.kabum.com.br/produto/115678/monitor-asus-proart-pa278qv"
-        }
-      ]
+      design:[
+        {name:'BenQ SW270C',model:'BenQ SW270C · 27 polegadas · Profissional',badge:'best',badgeLabel:'Escolha dos fotógrafos',
+         img:'https://m.media-amazon.com/images/I/71RBvFbtGfL._AC_SL1500_.jpg',
+         price:'R$ 3.899',priceNote:'na Amazon BR',
+         benefits:[
+           {t:'O que você edita é o que sai impresso',d:'Calibrado de fábrica para mostrar as cores como realmente são. Nada de surpresas na entrega ao cliente.'},
+           {t:'Proteção contra luz que atrapalha',d:'Vem com escudo lateral que bloqueia reflexos — fundamental onde cada tom de cor importa.'},
+           {t:'Cartão da câmera direto no monitor',d:'Conecta cartão SD direto na tela. Sem adaptadores para importar fotos.'},
+           {t:'Modo preto e branco real',d:'Para fotografia P&B, você vê a edição em preto e branco real — sem misturar com as cores do ambiente.'},
+         ],
+         specs:[
+           {l:'Cobertura sRGB',v:'99%',e:'Mostra praticamente todas as cores que câmeras e impressoras trabalham'},
+           {l:'Adobe RGB',v:'99%',e:'Padrão profissional — cobre cores que telas comuns não mostram'},
+           {l:'Calibração',v:'Sim (relatório incluso)',e:'Cada monitor sai verificado — você confia nas cores sem ajuste manual'},
+           {l:'Resolução',v:'WQHD (2560×1440)',e:'Detalhes finos visíveis — importante ao retocar pele e elementos delicados'},
+           {l:'Painel',v:'IPS Wide Gamut',e:'Reproduz cores que monitores comuns não conseguem exibir'},
+           {l:'USB-C',v:'Sim (60W)',e:'Conecta MacBook e notebooks modernos com um cabo'},
+         ],link:'https://www.amazon.com.br/dp/B08F5KXZS8'},
+        {name:'ASUS ProArt PA278QV',model:'ASUS ProArt PA278QV · 27 polegadas',badge:'cost',badgeLabel:'Profissional mais acessível',
+         img:'https://dlcdnimgs.asus.com/websites/global/products/YgxzRxgpidZeiBQL/img/kv.jpg',
+         price:'R$ 2.499',priceNote:'na Kabum ou Amazon',
+         benefits:[
+           {t:'Cores corretas sem precisar calibrar',d:'Vem calibrado e certificado. Você abre o produto e já pode confiar na tela para trabalho profissional.'},
+           {t:'Espaço para multitarefa real',d:'WQHD permite ter Premiere, Photoshop e Lightroom abertos ao mesmo tempo.'},
+           {t:'Ergonomia para longas sessões',d:'Ajuste de altura, rotação e inclinação — posicionar certo faz diferença no cansaço físico.'},
+           {t:'Compatível com softwares profissionais',d:'Reconhecido pela Adobe. As cores no Photoshop são as mesmas que o cliente vai ver.'},
+         ],
+         specs:[
+           {l:'Cobertura sRGB',v:'100%',e:'Todas as cores do padrão web e redes sociais com perfeição'},
+           {l:'Resolução',v:'WQHD (2560×1440)',e:'Ideal para edição sem placa de vídeo ultra potente'},
+           {l:'Painel',v:'IPS',e:'Cores precisas de qualquer ângulo'},
+           {l:'Taxa de atualização',v:'75 Hz',e:'Suficiente para design'},
+           {l:'Entradas',v:'HDMI 2.0 · DisplayPort · USB-A',e:'Conecta com qualquer computador profissional'},
+           {l:'Ergonomia',v:'Altura + Pivô + Inclinação',e:'Posicione como seu corpo precisa'},
+         ],link:'https://www.kabum.com.br/produto/115678/monitor-asus-proart-pa278qv'},
+      ],
     }
   },
-  notebook: { label: "Notebook", usecases: [], products: {} },
-  teclado: { label: "Teclado", usecases: [], products: {} },
-  mouse: { label: "Mouse", usecases: [], products: {} },
+  notebook:{usecases:[],products:{}},
+  teclado:{usecases:[],products:{}},
+  mouse:{usecases:[],products:{}},
 };
 
-let selectedCategory = null;
-let selectedUsecase = null;
+let selCat=null,selUC=null;
 
-function selectCategory(cat) {
-  selectedCategory = cat;
-  selectedUsecase = null;
+function setChip(n){[1,2,3].forEach(i=>document.getElementById('chip-'+i).classList.toggle('active',i<=n));}
 
-  document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-
-  const catData = data[cat];
-  document.getElementById('products-section').classList.remove('visible');
-
-  if (!catData.usecases || catData.usecases.length === 0) {
-    document.getElementById('usecase-section').classList.remove('visible');
-    document.getElementById('empty-state').classList.add('visible');
-    return;
-  }
-
+function selectCat(cat,el){
+  selCat=cat; selUC=null;
+  document.querySelectorAll('.cat-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('prod-wrap').classList.remove('visible');
   document.getElementById('empty-state').classList.remove('visible');
-
-  const pillsContainer = document.getElementById('usecase-pills');
-  pillsContainer.innerHTML = '';
-  catData.usecases.forEach(uc => {
-    const pill = document.createElement('button');
-    pill.className = 'usecase-pill';
-    pill.textContent = uc.label;
-    pill.onclick = () => selectUsecase(uc.id, uc.label);
-    pillsContainer.appendChild(pill);
+  const d=DATA[cat];
+  if(!d.usecases||d.usecases.length===0){
+    document.getElementById('uc-wrap').classList.remove('visible');
+    document.getElementById('empty-state').classList.add('visible');
+    setChip(1); return;
+  }
+  const grid=document.getElementById('uc-grid');
+  grid.innerHTML='';
+  d.usecases.forEach(uc=>{
+    const c=document.createElement('div');
+    c.className='uc-card';
+    c.innerHTML=`<div class="uc-emoji">${uc.emoji}</div><div class="uc-name">${uc.name}</div><div class="uc-desc">${uc.desc}</div>`;
+    c.onclick=()=>selectUC(uc.id,uc.name,uc.emoji,c);
+    grid.appendChild(c);
   });
-
-  const section = document.getElementById('usecase-section');
-  section.classList.add('visible');
-  section.classList.add('animate-in');
-  setTimeout(() => section.classList.remove('animate-in'), 300);
-  section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  const w=document.getElementById('uc-wrap');
+  w.classList.add('visible','animate-in');
+  setTimeout(()=>w.classList.remove('animate-in'),400);
+  setTimeout(()=>w.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+  setChip(2);
 }
 
-function selectUsecase(id, label) {
-  selectedUsecase = id;
-
-  document.querySelectorAll('.usecase-pill').forEach(p => p.classList.remove('active'));
-  event.currentTarget.classList.add('active');
-
-  const products = data[selectedCategory].products[id] || [];
-  const catLabel = data[selectedCategory].label;
-
-  document.getElementById('products-title').textContent = `${catLabel}es para ${label.replace(/^[^\w]+ /, '')}`;
-
-  const badge = document.getElementById('context-badge');
-  badge.innerHTML = `${catLabel} <span>${label.replace(/^[^\w]+ /, '')}</span>`;
-
-  const breadcrumb = document.getElementById('breadcrumb');
-  breadcrumb.innerHTML = `<a onclick="resetAll()">Início</a> <span>›</span> ${catLabel} <span>›</span> ${label.replace(/^[^\w]+ /, '')}`;
-  breadcrumb.classList.add('visible');
-
-  renderProducts(products);
-
-  const section = document.getElementById('products-section');
-  section.classList.add('visible');
-  section.classList.add('animate-in');
-  setTimeout(() => section.classList.remove('animate-in'), 400);
-  setTimeout(() => section.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+function selectUC(id,name,emoji,el){
+  selUC=id;
+  document.querySelectorAll('.uc-card').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  const prods=DATA[selCat].products[id]||[];
+  const catLabel={monitor:'Monitor',notebook:'Notebook',teclado:'Teclado',mouse:'Mouse'}[selCat];
+  document.getElementById('prod-title').textContent=`${catLabel}es para ${name}`;
+  document.getElementById('ctx-tag').innerHTML=`${catLabel} <span>${emoji} ${name}</span>`;
+  const bc=document.getElementById('breadcrumb');
+  bc.innerHTML=`<a onclick="resetAll()">Início</a><span class="bc-sep">›</span>${catLabel}<span class="bc-sep">›</span>${name}`;
+  bc.classList.add('visible');
+  renderProducts(prods);
+  const w=document.getElementById('prod-wrap');
+  w.classList.add('visible','animate-in');
+  setTimeout(()=>w.classList.remove('animate-in'),400);
+  setTimeout(()=>w.scrollIntoView({behavior:'smooth',block:'start'}),60);
+  setChip(3);
 }
 
-function renderProducts(products) {
-  const container = document.getElementById('products-list');
-  container.innerHTML = '';
-
-  products.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.style.animationDelay = `${i * 0.08}s`;
-
-    const benefitItems = p.benefits.map(b =>
-      `<li class="benefit-item">
-        <div class="benefit-dot"></div>
-        <div class="benefit-text"><strong>${b.title}.</strong> ${b.text}</div>
-      </li>`
-    ).join('');
-
-    const specRows = p.specs.map(s =>
-      `<tr>
-        <td>${s.label}</td>
-        <td>${s.value} <span class="spec-explain">${s.explain}</span></td>
-      </tr>`
-    ).join('');
-
-    const badgeClass = { best: 'badge-best', premium: 'badge-premium', cost: 'badge-cost' }[p.badge] || 'badge-best';
-
-    card.innerHTML = `
-      <div class="product-inner">
-        <div class="product-visual">
-          <img class="product-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
-          <span class="product-badge ${badgeClass}">${p.badgeLabel}</span>
+function renderProducts(prods){
+  const list=document.getElementById('prod-list');
+  list.innerHTML='';
+  prods.forEach((p,i)=>{
+    const ben=p.benefits.map(b=>`<li class="benefit-item"><div class="benefit-dot"></div><div class="benefit-text"><strong>${b.t}.</strong> ${b.d}</div></li>`).join('');
+    const sp=p.specs.map(s=>`<tr><td>${s.l}</td><td>${s.v}<span class="spec-explain">${s.e}</span></td></tr>`).join('');
+    const bc={best:'badge-best',cost:'badge-cost',premium:'badge-premium'}[p.badge]||'badge-best';
+    const card=document.createElement('div');
+    card.className='prod-card';
+    card.innerHTML=`
+      <div class="prod-inner">
+        <div class="prod-visual">
+          <img class="prod-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none'">
+          <span class="prod-badge ${bc}">${p.badgeLabel}</span>
         </div>
-        <div class="product-content">
-          <div class="product-name">${p.name}</div>
-          <div class="product-model">${p.model}</div>
+        <div class="prod-body">
+          <div class="prod-name">${p.name}</div>
+          <div class="prod-model">${p.model}</div>
           <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab(this, 'overview-${i}')">O que faz por você</button>
-            <button class="tab-btn" onclick="switchTab(this, 'specs-${i}')">Ficha Técnica</button>
+            <button class="tab-btn active" onclick="switchTab(this,'ov${i}')">O que faz por você</button>
+            <button class="tab-btn" onclick="switchTab(this,'sp${i}')">Ficha Técnica</button>
           </div>
-          <div id="overview-${i}" class="tab-content active">
-            <ul class="benefit-list">${benefitItems}</ul>
-          </div>
-          <div id="specs-${i}" class="tab-content">
-            <table class="specs-table">${specRows}</table>
-          </div>
+          <div id="ov${i}" class="tab-content active"><ul class="benefit-list">${ben}</ul></div>
+          <div id="sp${i}" class="tab-content"><table class="specs-table">${sp}</table></div>
         </div>
       </div>
-      <div class="product-footer">
-        <div>
-          <div class="price-tag">${p.price}</div>
-          <div class="price-note">${p.priceNote}</div>
-        </div>
-        <a class="buy-btn" href="${p.link}" target="_blank" rel="noopener">
-          Ver produto e comprar
+      <div class="prod-footer">
+        <div><div class="price-tag">${p.price}</div><div class="price-note">${p.priceNote}</div></div>
+        <a class="buy-btn" href="${p.link}" target="_blank" rel="noopener">Ver produto e comprar
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
         </a>
-      </div>
-    `;
-
-    container.appendChild(card);
+      </div>`;
+    list.appendChild(card);
   });
 }
 
-function switchTab(btn, tabId) {
-  const card = btn.closest('.product-content');
-  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  card.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+function switchTab(btn,id){
+  const body=btn.closest('.prod-body');
+  body.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  body.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById(tabId).classList.add('active');
+  document.getElementById(id).classList.add('active');
 }
 
-function resetAll() {
-  selectedCategory = null;
-  selectedUsecase = null;
-  document.querySelectorAll('.category-card').forEach(c => c.classList.remove('active'));
-  document.getElementById('usecase-section').classList.remove('visible');
-  document.getElementById('products-section').classList.remove('visible');
-  document.getElementById('breadcrumb').classList.remove('visible');
+function resetAll(){
+  selCat=null;selUC=null;
+  document.querySelectorAll('.cat-card,.uc-card').forEach(c=>c.classList.remove('active'));
+  document.getElementById('uc-wrap').classList.remove('visible');
+  document.getElementById('prod-wrap').classList.remove('visible');
   document.getElementById('empty-state').classList.remove('visible');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('breadcrumb').classList.remove('visible');
+  setChip(1);
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
 </body>
